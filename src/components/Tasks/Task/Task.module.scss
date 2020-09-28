@@ -1,0 +1,38 @@
+.content {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  flex-grow: 1;
+  transition: var(--transition);
+}
+
+.show {
+  height: 100%;
+  max-height: 300px;
+}
+
+.hide {
+  max-height: 50px;
+}
+
+.title {
+  margin: 0 var(--offset-sm) var(--offset-sm);
+  font-size: var(--fs-lg);
+}
+
+.paragraph {
+  margin-bottom: var(--offset-xxs);
+  font-size: var(--fs-sm);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.actions {
+  display: flex;
+
+  > button:not(:first-child) {
+    margin-left: var(--offset-sm);
+  }
+}

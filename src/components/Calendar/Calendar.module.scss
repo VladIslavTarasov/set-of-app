@@ -1,0 +1,11 @@
+.backToStart {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.show {
+  opacity: 1;
+}

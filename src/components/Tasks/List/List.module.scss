@@ -1,0 +1,21 @@
+.ul {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin-top: var(--offset-xs);
+}
+
+.li {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: var(--offset-sm);
+  border: 3px solid var(--black1);
+  margin: var(--offset-sm);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+
+  &:hover {
+    background-color: var(--black1);
+  }
+}

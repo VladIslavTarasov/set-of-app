@@ -1,0 +1,56 @@
+:root {
+  --transition: 0.3s;
+  // Breakpoints
+
+  --desktop: 1200px;
+  --tablet: 780px;
+  --mobile: 480px;
+
+  // shadows
+
+  --shadow1: 0 0 3px 0 black;
+
+  // Z-index
+
+  --z-modal: 1000;
+
+  // Fonst-size
+
+  --fs-xs: 12px;
+  --fs-sm: 14px;
+  --fs-md: 20px;
+  --fs-lg: 24px;
+  --fs-xl: 32px;
+
+  // Offsets
+
+  --offset-xl: 48px;
+  --offset-lg: 32px;
+  --offset-md2: 24px;
+  --offset-md: 16px;
+  --offset-sm: 12px;
+  --offset-xs: 8px;
+  --offset-xxs: 4px;
+
+  // Border radius
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-md2: 12px;
+  --radius-circle: 50%;
+
+  // Colors
+
+  --white: rgba(255, 255, 255, 1);
+  --red: red;
+  --red2: rgba(255, 0, 0, 0.2);
+  --gray: gray;
+  --gray1: rgba(59, 62, 241, 0.1);
+  --black: black;
+  --black1: rgba(0, 0, 0, 0.1);
+  --black2: rgba(0, 0, 0, 0.2);
+  --black3: rgba(0, 0, 0, 0.3);
+  --green1: green;
+  --green2: rgba(64, 255, 46, 0.2);
+}

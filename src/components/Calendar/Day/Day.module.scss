@@ -1,0 +1,87 @@
+.button {
+  position: relative;
+  width: 100%;
+  padding: var(--offset-md) 0;
+  border: none;
+  background-color: transparent;
+  color: var(--gray);
+  font-size: var(--fs-lg);
+  text-align: center;
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border-radius: var(--radius-md);
+    content: '';
+    transform: translate(-50%, -50%) scale(0.7);
+    transition: var(--transition);
+  }
+
+  &:focus,
+  &:hover {
+    &::after {
+      background-color: var(--black1);
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    &::after {
+      animation: buttonAnimation 4s infinite;
+      cursor: pointer;
+    }
+  }
+
+  &:disabled {
+    &::after {
+      cursor: wait;
+    }
+  }
+}
+
+.activeMonth {
+  color: var(--black);
+}
+
+.today {
+  &::after {
+    border: 2px solid var(--black1);
+    background-color: var(--green2);
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+.choosen {
+  &::after {
+    background-color: var(--gray1);
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+
+  &:hover,
+  &:focus {
+    &::after {
+      border: 2px solid var(--black2);
+      animation: none;
+      background-color: var(--gray1);
+      transform: translate(-50%, -50%) scale(0.8);
+    }
+  }
+}
+
+@keyframes buttonAnimation {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}

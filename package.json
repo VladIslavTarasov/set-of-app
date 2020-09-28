@@ -1,0 +1,90 @@
+{
+  "name": "calendar",
+  "version": "0.0.1",
+  "private": false,
+  "dependencies": {
+    "axios": "0.19.2",
+    "classnames": "2.2.6",
+    "formik": "2.1.4",
+    "history": "4.10.1",
+    "i18next": "19.4.5",
+    "moment": "^2.27.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-i18next": "11.5.0",
+    "react-icons": "^3.11.0",
+    "react-router-dom": "5.2.0",
+    "yup": "0.29.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "4.2.4",
+    "@testing-library/react": "9.3.2",
+    "@testing-library/user-event": "7.1.2",
+    "@types/axios": "0.14.0",
+    "@types/classnames": "2.2.10",
+    "@types/jest": "24.0.0",
+    "@types/node": "12.0.0",
+    "@types/react": "16.9.0",
+    "@types/react-dom": "16.9.0",
+    "@types/react-router-dom": "5.1.5",
+    "@types/yup": "0.29.3",
+    "@typescript-eslint/parser": "3.1.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "cross-env": "7.0.2",
+    "eslint-config-airbnb": "18.1.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-import": "2.21.2",
+    "eslint-plugin-prettier": "3.1.4",
+    "express": "^4.17.1",
+    "husky": "4.2.5",
+    "lint-staged": "10.2.9",
+    "node-sass": "4.14.1",
+    "nodemon": "^2.0.4",
+    "prettier": "2.0.5",
+    "react-scripts": "3.4.0",
+    "start-server-and-test": "1.11.0",
+    "stylelint": "13.6.0",
+    "stylelint-config-idiomatic-order": "8.1.0",
+    "stylelint-config-prettier": "8.0.1",
+    "stylelint-config-standard": "20.0.0",
+    "stylelint-prettier": "1.1.2",
+    "stylelint-scss": "3.17.2",
+    "typescript": "3.7.2",
+    "uuid": "^8.3.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "server": "node ./stubs",
+    "build": "react-scripts build",
+    "test:unit": "react-scripts test --passWithNoTests",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx,json}\"",
+    "lint:fix": "eslint \"src/**/*.{js,jsx,ts,tsx,json}\" --fix",
+    "lint:style": "stylelint \"./src/**/*.{scss,css}\"",
+    "lint:style:fix": "stylelint \"./src/**/*.{scss,css}\" --fix",
+    "prettier:fix": "prettier . --write"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json}": [
+      "prettier --write",
+      "git add"
+    ],
+    "src/**/*.{scss,css}": [
+      "stylelint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run lint:style"
+    }
+  },
+  "browserslist": {
+    "development": [
+      "last 1 chrome version"
+    ]
+  }
+}

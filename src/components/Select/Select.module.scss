@@ -1,0 +1,28 @@
+.container {
+  position: relative;
+}
+
+.list {
+  position: absolute;
+  z-index: var(--z-modal);
+  top: -12px;
+  left: 0;
+  min-width: 200px;
+  max-width: 300px;
+  max-height: 200px;
+  background-color: var(--white);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow1);
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-padding-right: 10px;
+}
+
+.list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background-color: var(--black1);
+  border-radius: var(--radius-sm);
+}

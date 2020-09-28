@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Modal render with button 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="modal"
+      role="dialog"
+    >
+      <button
+        class="button md"
+        type="button"
+      >
+        close
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`components/Modal render with children 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="modal"
+      role="dialog"
+    >
+      <h5>
+        Title
+      </h5>
+      <p>
+        Description
+      </p>
+      <button>
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`components/Modal render with description 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="modal"
+      role="dialog"
+    >
+      <div
+        class="content"
+      >
+        <p
+          class="text"
+        >
+          description
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`components/Modal render with description 2`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="modal"
+      role="dialog"
+    >
+      <div
+        class="content"
+      >
+        <p
+          class="text"
+        >
+          description1
+        </p>
+        <p
+          class="text"
+        >
+          description2
+        </p>
+        <p
+          class="text"
+        >
+          description3
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`components/Modal render with title 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="modal"
+      role="dialog"
+    >
+      <header
+        class="header"
+      >
+        <h3
+          class="title"
+        >
+          Title
+        </h3>
+      </header>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,33 @@
+.table {
+  flex-grow: 1;
+  border: 2px solid var(--black1);
+}
+
+.day {
+  position: relative;
+  border: 1px solid var(--black1);
+  text-align: center;
+
+  &:not(:first-child) {
+    border-left: 2px solid var(--black1);
+  }
+}
+
+.dayHead {
+  background-color: var(--black1);
+}
+
+.hasTask {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 15%;
+    right: 25%;
+    width: 10px;
+    height: 10px;
+    background-color: var(--green1);
+    border-radius: var(--radius-circle);
+    content: '';
+  }
+}
