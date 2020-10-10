@@ -1,7 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
-const fs = require('fs');
 
 const create = require('./tasks/create');
 const edit = require('./tasks/edit');

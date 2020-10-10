@@ -4,22 +4,22 @@
 
 .header {
   position: fixed;
+  z-index: 1;
   top: -60px;
   right: 0;
   left: 0;
-  z-index: 1;
   height: 60px;
-  transition: var(--transition);
   background-color: var(--green3);
+  transition: var(--transition);
 }
 
 .wrapper {
+  display: flex;
   max-width: 1024px;
   height: 100%;
-  margin: 0 auto;
-  display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 0 auto;
 }
 
 .showHeader {
