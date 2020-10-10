@@ -21,6 +21,7 @@ export default {
     required: 'Required',
   },
   todo: {
+    title: 'Todo List',
     create: 'Create new task',
     edit: 'Edit task',
     delete: 'Delete task',
