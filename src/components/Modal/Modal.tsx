@@ -1,4 +1,5 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -15,7 +16,7 @@ export interface ModalProps {
 const Modal: React.FC<ModalProps> = ({ title, description, onClose, children }) => {
   const { t } = useTranslation('buttons');
 
-  return (
+  return createPortal(
     <div className={style.container}>
       <div className={style.modal} role="dialog">
         {title && (
@@ -46,7 +47,8 @@ const Modal: React.FC<ModalProps> = ({ title, description, onClose, children }) 
 
         {children}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
