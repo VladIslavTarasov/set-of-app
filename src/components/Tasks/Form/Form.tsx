@@ -1,14 +1,14 @@
 import React, { useMemo, useRef, memo } from 'react';
-import { createPortal } from 'react-dom';
 
 import cn from 'classnames';
 import { useFormik } from 'formik';
+import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { AiOutlineClose } from 'react-icons/ai';
 import * as Yup from 'yup';
 
 import Button from 'components/Button';
-import { useClickOutside } from 'hooks/useClickOutside';
+import { useClickOutside } from 'hooks';
 import { Task } from 'store/tasks/tasks.types';
 
 import style from './Form.module.scss';

@@ -2,9 +2,9 @@ import React, { memo, useRef, useEffect, useCallback, useState } from 'react';
 
 import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
-import { debounce } from 'utils/debounce';
 
 import LanguageSwitcher from 'components/LanguageSwitcher';
+import { debounce } from 'utils/debounce';
 
 import style from './Header.module.scss';
 

@@ -8,7 +8,7 @@ import Button from 'components/Button';
 import Arrows from 'components/Calendar/Arrows';
 import Header from 'components/Calendar/Header';
 import Month from 'components/Calendar/Month';
-import { useScrollToElement } from 'hooks/useScrollToElement';
+import { useScrollToElement } from 'hooks';
 import { State } from 'store/calendar/calendar.types';
 
 import style from './Calendar.module.scss';
