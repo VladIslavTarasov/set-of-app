@@ -70,8 +70,8 @@ export const getCurrentMonth = (date: string): CalendarDay[] => {
   }));
 };
 
-export const getCalendarData = (function () {
-  const cache: any = {};
+export const getCalendarData = (function memo() {
+  const cache: Record<string, CalendarDay[][]> = {};
 
   return (date: string = moment().format('YYYY-MM')): CalendarDay[][] => {
     if (cache[date]) {
@@ -82,7 +82,11 @@ export const getCalendarData = (function () {
     const currentMonth = getCurrentMonth(date);
     const nextMonth = getNextMonth(date, prevMonth.length + currentMonth.length);
 
-    cache[date] = formatCalendarData([...prevMonth, ...currentMonth, ...nextMonth]);
+    cache[date] = formatCalendarData([
+      ...prevMonth,
+      ...currentMonth,
+      ...nextMonth,
+    ]) as CalendarDay[][];
     return cache[date];
   };
 })();

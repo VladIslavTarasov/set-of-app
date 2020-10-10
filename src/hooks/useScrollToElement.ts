@@ -29,7 +29,7 @@ export const useScrollToElement: UseScrollToElement = element => {
     return () => {
       window.removeEventListener('scroll', onScroll);
     };
-  });
+  }, [onScroll]);
 
   return [showBackToTop, scrollTo];
 };

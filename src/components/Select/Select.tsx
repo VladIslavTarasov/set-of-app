@@ -1,7 +1,7 @@
 import React, { memo, useState, useCallback, useRef } from 'react';
 
 import Button from 'components/Button';
-import { useClickOutside } from 'hooks/useClickOutside';
+import { useClickOutside } from 'hooks';
 
 import Option from './Option';
 import style from './Select.module.scss';
