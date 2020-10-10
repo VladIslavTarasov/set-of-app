@@ -1,4 +1,5 @@
 import React, { useMemo, useRef, memo } from 'react';
+import { createPortal } from 'react-dom';
 
 import cn from 'classnames';
 import { useFormik } from 'formik';
@@ -60,7 +61,7 @@ const Form: React.FC<FormProps> = ({ onSubmit, onClose, mode, task, loading }) =
 
   useClickOutside(divElement, onClose);
 
-  return (
+  return createPortal(
     <section className={style.container}>
       <div ref={divElement} className={style.formWrapper}>
         <Button onClick={onClose} type="button" className={style.close} mode="icon">
@@ -123,7 +124,8 @@ const Form: React.FC<FormProps> = ({ onSubmit, onClose, mode, task, loading }) =
           </Button>
         </form>
       </div>
-    </section>
+    </section>,
+    document.body
   );
 };
 
