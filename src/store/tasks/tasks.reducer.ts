@@ -14,6 +14,7 @@ export const initial: tasksTypes.State = {
   deleteTaskRequestStatus: ResponseStatuses.UNCALLED,
   getTasksRequestStatus: ResponseStatuses.UNCALLED,
 };
+
 const tasksReducer = (state: tasksTypes.State, action: tasksTypes.Actions): tasksTypes.State => {
   switch (action.type) {
     case tasksTypes.SET_TASKS:

@@ -4,6 +4,11 @@ export default {
     title: 'Название',
     description: 'Описание',
   },
+  tabs: {
+    all: 'Все',
+    complete: 'Выполненные',
+    important: 'Важные',
+  },
   buttons: {
     submit: 'Отправить',
     close: 'Закрыть',
@@ -16,6 +21,7 @@ export default {
     formCheckbox: 'Важно',
     formTitle: 'Название',
     formDescription: 'Описание',
+    empty: 'Нет заданий',
   },
   errorMessages: {
     required: 'Обязательное поле',

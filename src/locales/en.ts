@@ -4,6 +4,11 @@ export default {
     title: 'Error',
     description: 'error',
   },
+  tabs: {
+    all: 'All',
+    complete: 'Complete',
+    important: 'Important',
+  },
   buttons: {
     submit: 'submit',
     close: 'close',
@@ -16,6 +21,7 @@ export default {
     formCheckbox: 'Important',
     formTitle: 'Title',
     formDescription: 'Description',
+    empty: 'No tasks',
   },
   errorMessages: {
     required: 'Required',
