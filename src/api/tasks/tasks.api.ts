@@ -15,7 +15,7 @@ export const createTask = (date: string, data: Omit<Task, 'id' | 'complete'>) =>
     data,
   });
 
-export const editTask = (date: string, data?: Task) =>
+export const editTask = (date: string, data: Task) =>
   client.request<TaskResponse>({
     method: 'PUT',
     url: `/tasks/${date}`,
