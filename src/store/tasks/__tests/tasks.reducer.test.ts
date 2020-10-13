@@ -1,6 +1,6 @@
 import { ResponseStatuses } from 'types';
 
-import { initial, tasksReducer } from '../tasks.reducer';
+import tasksReducer, { initial } from '../tasks.reducer';
 import * as tasksTypes from '../tasks.types';
 
 describe('tasks.reducer', () => {
@@ -71,7 +71,7 @@ describe('tasks.reducer', () => {
       { type: tasksTypes.SET_REQUEST_STATUS_PENDING, payload: 'create' } as tasksTypes.Actions,
       { type: tasksTypes.SET_REQUEST_STATUS_PENDING, payload: 'edit' } as tasksTypes.Actions,
       { type: tasksTypes.SET_REQUEST_STATUS_PENDING, payload: 'get' } as tasksTypes.Actions,
-      { type: tasksTypes.SET_REQUEST_STATUS_SUCCESS, payload: 'complete' } as tasksTypes.Actions,
+      { type: tasksTypes.SET_REQUEST_STATUS_PENDING, payload: 'complete' } as tasksTypes.Actions,
     ];
 
     actions.forEach(action => {
@@ -105,7 +105,7 @@ describe('tasks.reducer', () => {
       { type: tasksTypes.SET_REQUEST_STATUS_FAILURE, payload: 'create' } as tasksTypes.Actions,
       { type: tasksTypes.SET_REQUEST_STATUS_FAILURE, payload: 'edit' } as tasksTypes.Actions,
       { type: tasksTypes.SET_REQUEST_STATUS_FAILURE, payload: 'get' } as tasksTypes.Actions,
-      { type: tasksTypes.SET_REQUEST_STATUS_SUCCESS, payload: 'complete' } as tasksTypes.Actions,
+      { type: tasksTypes.SET_REQUEST_STATUS_FAILURE, payload: 'complete' } as tasksTypes.Actions,
     ];
 
     actions.forEach(action => {

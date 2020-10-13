@@ -113,7 +113,7 @@ describe('tasks.api', () => {
         expect(requestStub).toHaveBeenCalledWith(
           expect.objectContaining({
             method: 'PUT',
-            url: `/tasks/${date}`,
+            url: `/task/compelete/${date}`,
             data: { id },
           })
         );
