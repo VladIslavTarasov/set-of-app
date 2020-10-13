@@ -12,11 +12,9 @@ describe('components/Modal', () => {
 
   it('render with description', () => {
     const { container, rerender } = render(<Modal description="description" />);
-    expect(container.querySelectorAll('p.text').length).toBe(1);
     expect(container).toMatchSnapshot();
 
     rerender(<Modal description={['description1', 'description2', 'description3']} />);
-    expect(container.querySelectorAll('p.text').length).toBe(3);
     expect(container).toMatchSnapshot();
   });
 
