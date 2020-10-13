@@ -71,6 +71,7 @@ describe('tasks.reducer', () => {
       { type: tasksTypes.SET_REQUEST_STATUS_PENDING, payload: 'create' } as tasksTypes.Actions,
       { type: tasksTypes.SET_REQUEST_STATUS_PENDING, payload: 'edit' } as tasksTypes.Actions,
       { type: tasksTypes.SET_REQUEST_STATUS_PENDING, payload: 'get' } as tasksTypes.Actions,
+      { type: tasksTypes.SET_REQUEST_STATUS_SUCCESS, payload: 'complete' } as tasksTypes.Actions,
     ];
 
     actions.forEach(action => {
@@ -87,6 +88,7 @@ describe('tasks.reducer', () => {
       { type: tasksTypes.SET_REQUEST_STATUS_SUCCESS, payload: 'create' } as tasksTypes.Actions,
       { type: tasksTypes.SET_REQUEST_STATUS_SUCCESS, payload: 'edit' } as tasksTypes.Actions,
       { type: tasksTypes.SET_REQUEST_STATUS_SUCCESS, payload: 'get' } as tasksTypes.Actions,
+      { type: tasksTypes.SET_REQUEST_STATUS_SUCCESS, payload: 'complete' } as tasksTypes.Actions,
     ];
 
     actions.forEach(action => {
@@ -103,6 +105,7 @@ describe('tasks.reducer', () => {
       { type: tasksTypes.SET_REQUEST_STATUS_FAILURE, payload: 'create' } as tasksTypes.Actions,
       { type: tasksTypes.SET_REQUEST_STATUS_FAILURE, payload: 'edit' } as tasksTypes.Actions,
       { type: tasksTypes.SET_REQUEST_STATUS_FAILURE, payload: 'get' } as tasksTypes.Actions,
+      { type: tasksTypes.SET_REQUEST_STATUS_SUCCESS, payload: 'complete' } as tasksTypes.Actions,
     ];
 
     actions.forEach(action => {

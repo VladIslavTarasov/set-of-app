@@ -5,7 +5,9 @@
 .main {
   position: relative;
   width: 100%;
-  max-width: 1024px;
+  max-width: 1440px;
+  min-height: 100vh;
+  padding: 0 var(--offset-sm);
   margin: 0 auto;
 }
 

@@ -7,7 +7,7 @@ import { TabsContentProps } from '../Content/Content';
 import style from './Container.module.scss';
 
 export interface TabsContainerProps {
-  active?: string;
+  active: string;
   classNames?: {
     container?: string;
     tablist?: string;
@@ -17,20 +17,16 @@ export interface TabsContainerProps {
 }
 
 const TabsContainer: React.FC<TabsContainerProps> = ({ children, active, classNames }) => {
-  const [activeValue, setActiveValue] = useState<string>(active || '');
+  const [activeValue, setActiveValue] = useState<string>(active);
 
-  const handleChange = useCallback(value => {
+  const handleClick = useCallback(value => {
     setActiveValue(value);
   }, []);
 
   const tabs = useMemo(() => {
-    return React.Children.map(children, (child, i) => {
+    return React.Children.map(children, child => {
       if (!React.isValidElement<TabsContentProps>(child)) {
         throw new Error('Tabs.Container must include only Tabs.Content');
-      }
-
-      if (!active && !i) {
-        setActiveValue(child.props.value);
       }
 
       return {
@@ -38,7 +34,7 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ children, active, classNa
         component: child,
       };
     });
-  }, [children, active]);
+  }, [children]);
 
   return (
     <div className={cn(style.container, classNames?.container)}>
@@ -47,7 +43,7 @@ const TabsContainer: React.FC<TabsContainerProps> = ({ children, active, classNa
           <Button
             key={value}
             value={value}
-            onChange={handleChange}
+            onClick={handleClick}
             selected={value === activeValue}
             classNames={classNames?.button}
           />

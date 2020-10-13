@@ -17,6 +17,7 @@ export interface State {
   readonly editTaskRequestStatus: ResponseStatuses;
   readonly deleteTaskRequestStatus: ResponseStatuses;
   readonly getTasksRequestStatus: ResponseStatuses;
+  readonly completeTasksRequestStatus: ResponseStatuses;
 }
 
 export const SET_TASKS = 'TASKS/SET_TASKS';
@@ -48,7 +49,12 @@ export type EditTaskActionCreator = (task: Task | null) => EditTaskAction;
 
 export const SET_REQUEST_STATUS_PENDING = 'TASKS/SET_REQUEST_STATUS_PENDING';
 
-export type SetRequestStatusPendingActionPayload = 'delete' | 'create' | 'edit' | 'get';
+export type SetRequestStatusPendingActionPayload =
+  | 'delete'
+  | 'create'
+  | 'edit'
+  | 'get'
+  | 'complete';
 
 export type SetRequestStatusPendingAction = {
   type: typeof SET_REQUEST_STATUS_PENDING;

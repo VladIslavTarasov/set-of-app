@@ -1,6 +1,6 @@
 import React, { useReducer, useCallback, useMemo } from 'react';
 
-import { deleteTask } from 'api/tasks/tasks.api';
+import { deleteTask, completeTask } from 'api/tasks/tasks.api';
 import Calendar from 'components/Calendar';
 import TasksErrorModal from 'components/Tasks/ErrorModal';
 import TasksList from 'components/Tasks/List';
@@ -36,6 +36,22 @@ const TodoListContainer: React.FC<TodoListContainerProps> = () => {
         if (err.isAxiosError) {
           // TODO stubs errors codes
           tasksDispatch(tasksActions.setRequestStatusFailure('delete'));
+        }
+      }
+    },
+    [tasksState.choosenDate, tasksDispatch]
+  );
+
+  const handleCompleteTask = useCallback(
+    async (id: string) => {
+      tasksDispatch(tasksActions.setRequestStatusPending('edit'));
+      try {
+        await completeTask(tasksState.choosenDate, id);
+        tasksDispatch(tasksActions.setRequestStatusSuccess('edit'));
+      } catch (err) {
+        if (err.isAxiosError) {
+          // TODO stubs errors codes
+          tasksDispatch(tasksActions.setRequestStatusFailure('edit'));
         }
       }
     },
@@ -80,7 +96,12 @@ const TodoListContainer: React.FC<TodoListContainerProps> = () => {
           createTaskRequestStatus={tasksState.createTaskRequestStatus}
           editTaskRequestStatus={tasksState.editTaskRequestStatus}
         />
-        <TasksList tasks={tasks} loading={loading} onDelete={handleDeleteTask} />
+        <TasksList
+          tasks={tasks}
+          loading={loading}
+          onDelete={handleDeleteTask}
+          onComplete={handleCompleteTask}
+        />
         <TasksErrorModal
           createTaskRequestStatus={tasksState.createTaskRequestStatus}
           editTaskRequestStatus={tasksState.editTaskRequestStatus}

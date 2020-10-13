@@ -28,3 +28,10 @@ export const deleteTask = (date: string, id: string) =>
     url: `/tasks/${date}`,
     params: { id },
   });
+
+export const completeTask = (date: string, id: string) =>
+  client.request<TaskResponse>({
+    method: 'PUT',
+    url: `/task/compelete/${date}`,
+    data: { id },
+  });
