@@ -98,5 +98,27 @@ describe('tasks.api', () => {
         expect(result).toBe(successResponse);
       });
     });
+
+    describe('completeTask', () => {
+      it('editTask successResponse', async () => {
+        const successResponse = {};
+        const requestStub = jest
+          .spyOn(client, 'request')
+          .mockImplementationOnce(() => Promise.resolve(successResponse));
+
+        const date = '2020-05';
+        const id = 'id';
+        const result = await tasksApi.completeTask(date, id);
+
+        expect(requestStub).toHaveBeenCalledWith(
+          expect.objectContaining({
+            method: 'PUT',
+            url: `/tasks/${date}`,
+            data: { id },
+          })
+        );
+        expect(result).toBe(successResponse);
+      });
+    });
   });
 });

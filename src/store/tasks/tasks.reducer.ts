@@ -13,6 +13,7 @@ export const initial: tasksTypes.State = {
   editTaskRequestStatus: ResponseStatuses.UNCALLED,
   deleteTaskRequestStatus: ResponseStatuses.UNCALLED,
   getTasksRequestStatus: ResponseStatuses.UNCALLED,
+  completeTasksRequestStatus: ResponseStatuses.UNCALLED,
 };
 
 const tasksReducer = (state: tasksTypes.State, action: tasksTypes.Actions): tasksTypes.State => {

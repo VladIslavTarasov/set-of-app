@@ -4,6 +4,8 @@ import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { AiTwotoneEdit, AiTwotoneDelete } from 'react-icons/ai';
 import { BiShow, BiHide } from 'react-icons/bi';
+import { ImFire } from 'react-icons/im';
+import { MdDone } from 'react-icons/md';
 
 import Button from 'components/Button';
 import { TasksDispatch } from 'context/tasksDispatch';
@@ -15,21 +17,23 @@ import style from './Task.module.scss';
 interface TaskItemProps {
   task: Task;
   onDelete: (id: string) => void;
+  onComplete: (id: string) => void;
 }
 
-const TaskItem: React.FC<TaskItemProps> = ({ onDelete, task, task: { description, title } }) => {
+const TaskItem: React.FC<TaskItemProps> = ({
+  onDelete,
+  onComplete,
+  task,
+  task: { description, title, important, complete },
+}) => {
   const { t } = useTranslation(['todo', 'buttons']);
   const dispatch = useContext(TasksDispatch);
   const [longTask, setLongTask] = useState<boolean>(false);
   const [showFullTask, setShowFullTask] = useState<boolean>(false);
 
-  const measuredRef = useCallback(
-    (node: HTMLElement) => {
-      if (node) setLongTask(node.offsetHeight > 50);
-    },
-    // eslint-disable-next-line
-    [task]
-  );
+  const measuredRef = useCallback((node: HTMLElement) => {
+    if (node) setLongTask(node.offsetHeight > 50);
+  }, []);
 
   const toogle = useCallback(() => {
     setShowFullTask(prev => !prev);
@@ -43,6 +47,10 @@ const TaskItem: React.FC<TaskItemProps> = ({ onDelete, task, task: { description
     onDelete(task.id);
   }, [onDelete, task.id]);
 
+  const handleCompleteTask = useCallback(() => {
+    onComplete(task.id);
+  }, [onComplete, task.id]);
+
   return (
     <>
       <article
@@ -52,7 +60,10 @@ const TaskItem: React.FC<TaskItemProps> = ({ onDelete, task, task: { description
         })}
         ref={measuredRef}
       >
-        <h5 className={style.title}>{title}</h5>
+        <div className={style.titleWrapper}>
+          {important && <ImFire color="red" fontSize="medium" />}
+          <h5 className={style.title}>{title}</h5>
+        </div>
         {description.map((item, i) => (
           // eslint-disable-next-line
           <p key={`${item}-${i}`} className={style.paragraph}>
@@ -73,14 +84,26 @@ const TaskItem: React.FC<TaskItemProps> = ({ onDelete, task, task: { description
             {showFullTask ? <BiHide /> : <BiShow />}
           </Button>
         )}
-        <Button
-          onClick={handleEditTask}
-          mode="icon"
-          araia-label={t('buttons:edit')}
-          title={t('buttons:edit')}
-        >
-          <AiTwotoneEdit />
-        </Button>
+        {!complete && (
+          <>
+            <Button
+              onClick={handleEditTask}
+              mode="icon"
+              araia-label={t('buttons:edit')}
+              title={t('buttons:edit')}
+            >
+              <AiTwotoneEdit />
+            </Button>
+            <Button
+              onClick={handleCompleteTask}
+              mode="icon"
+              araia-label={t('buttons:done')}
+              title={t('buttons:done')}
+            >
+              <MdDone />
+            </Button>
+          </>
+        )}
         <Button
           onClick={handleDeleteTask}
           mode="icon"

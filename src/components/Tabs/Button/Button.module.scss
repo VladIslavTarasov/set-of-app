@@ -3,19 +3,20 @@
   box-sizing: border-box;
   padding: var(--offset-sm);
   border-bottom: 2px solid transparent;
-  background-color: var(--white);
+  background-color: transparent;
+  color: var(--gray);
   font-size: var(--fs-md);
   text-align: center;
   transition: var(--transition);
 
   &:hover,
   &:focus {
-    background-color: var(--black2);
+    border-bottom: 2px solid var(--green1);
     text-decoration: underline;
   }
 }
 
 .selected {
   border-bottom: 2px solid var(--green1);
-  background-color: var(--black1);
+  color: var(--black);
 }

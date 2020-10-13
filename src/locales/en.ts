@@ -16,6 +16,7 @@ export default {
     showList: 'Show full description',
     delete: 'Delete task',
     edit: 'Edit Task',
+    done: 'Done',
   },
   tasks: {
     formCheckbox: 'Important',

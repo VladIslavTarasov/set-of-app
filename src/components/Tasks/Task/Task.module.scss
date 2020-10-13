@@ -15,9 +15,16 @@
   max-height: 50px;
 }
 
+.titleWrapper {
+  display: flex;
+}
+
 .title {
+  overflow: hidden;
+  max-width: 300px;
   margin: 0 var(--offset-sm) var(--offset-sm);
   font-size: var(--fs-lg);
+  text-overflow: ellipsis;
 }
 
 .paragraph {

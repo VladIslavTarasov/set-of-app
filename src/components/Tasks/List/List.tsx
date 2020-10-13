@@ -13,9 +13,10 @@ interface ListProps {
   tasks: Task[] | null;
   loading: boolean;
   onDelete: (id: string) => void;
+  onComplete: (id: string) => void;
 }
 
-const List: React.FC<ListProps> = ({ tasks: propsTasks, loading, onDelete }) => {
+const List: React.FC<ListProps> = ({ tasks: propsTasks, loading, onDelete, onComplete }) => {
   const { t } = useTranslation(['tabs', 'tasks']);
 
   const tabs = useMemo(
@@ -27,28 +28,27 @@ const List: React.FC<ListProps> = ({ tasks: propsTasks, loading, onDelete }) => 
     [t, propsTasks]
   );
 
-  if (loading) {
-    return <Loader size="lg" mode="circle" />;
-  }
-
   return (
-    <Tabs.Container>
-      {tabs.map(({ value, tasks }) => (
-        <Tabs.Content key={value} value={value}>
-          {tasks?.length ? (
-            <ul className={style.ul}>
-              {tasks.map(task => (
-                <li className={style.li} key={task.id}>
-                  <TaskItem onDelete={onDelete} task={task} />
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>{t('tasks:empty')}</p>
-          )}
-        </Tabs.Content>
-      ))}
-    </Tabs.Container>
+    <>
+      {loading && <Loader size="lg" mode="circle" classNames={style.tasksLoading} />}
+      <Tabs.Container active={t('all')}>
+        {tabs.map(({ value, tasks }) => (
+          <Tabs.Content key={value} value={value}>
+            {tasks?.length ? (
+              <ul className={style.ul}>
+                {tasks.map(task => (
+                  <li className={style.li} key={task.id}>
+                    <TaskItem onDelete={onDelete} onComplete={onComplete} task={task} />
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>{t('tasks:empty')}</p>
+            )}
+          </Tabs.Content>
+        ))}
+      </Tabs.Container>
+    </>
   );
 };
 

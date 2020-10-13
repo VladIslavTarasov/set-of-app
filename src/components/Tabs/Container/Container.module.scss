@@ -5,12 +5,14 @@
 }
 
 .tablist {
+  position: relative;
   display: flex;
   overflow: hidden;
   width: fit-content;
+  width: 100%;
   box-sizing: border-box;
   flex-wrap: nowrap;
-  border: 1px solid var(--black2);
   background-color: var(--green2);
   border-radius: var(--radius-sm);
+  box-shadow: var(--shadow1);
 }
