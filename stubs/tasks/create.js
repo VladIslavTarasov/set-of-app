@@ -10,12 +10,14 @@ module.exports = (req, res) => {
 
     const updateTasks = {
       ...tasks,
-      [req.params.date]: (tasks[req.params.date] || []).concat({
-        ...req.body,
-        id: uuidv4(),
-        complete: false,
-        description: req.body.description.split('\n'),
-      }),
+      [req.params.date]: [
+        {
+          ...req.body,
+          id: uuidv4(),
+          complete: false,
+          description: req.body.description.split('\n'),
+        },
+      ].concat(tasks[req.params.date] || []),
     };
 
     fs.writeFileSync(path.join(__dirname, '../db.json'), JSON.stringify(updateTasks));

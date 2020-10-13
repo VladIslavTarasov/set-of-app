@@ -4,16 +4,16 @@ import cn from 'classnames';
 
 import style from './Button.module.scss';
 
-interface ButtonProps extends React.AriaAttributes {
-  onChange: (value: string) => void;
+interface ButtonProps {
+  onClick: (value: string) => void;
   value: string;
   selected: boolean;
   classNames?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ onChange, value, selected, classNames, ...props }) => {
+const Button: React.FC<ButtonProps> = ({ onClick, value, selected, classNames, ...props }) => {
   const handleChange = () => {
-    if (!selected) onChange(value);
+    if (!selected) onClick(value);
   };
 
   return (

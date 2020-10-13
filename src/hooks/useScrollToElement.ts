@@ -9,7 +9,7 @@ export const useScrollToElement: UseScrollToElement = element => {
 
   const scrollTo = useCallback(() => {
     if (element.current) {
-      element.current.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      element.current.scrollIntoView({ block: 'center', behavior: 'smooth' });
     }
   }, [element]);
 

@@ -18,7 +18,7 @@ module.exports = (req, res) => {
 
     fs.writeFileSync(path.join(__dirname, '../db.json'), JSON.stringify(updateTasks));
 
-    res.status(200).json(successResponse(null));
+    res.status(200).status(200).json(successResponse(null));
   } catch (e) {
     res.json(failureResponse(null));
   }

@@ -58,6 +58,7 @@
   "scripts": {
     "start": "react-scripts start",
     "server": "node ./stubs",
+    "server:dev": "nodemon ./stubs",
     "build": "react-scripts build",
     "test:unit": "react-scripts test --passWithNoTests",
     "cy:open": "cross-env cypress open",
