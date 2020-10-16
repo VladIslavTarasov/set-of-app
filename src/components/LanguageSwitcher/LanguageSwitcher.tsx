@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -15,7 +15,11 @@ const LanguageSwitcher: React.FC = () => {
     [i18n]
   );
 
-  return <Select onChange={handleChange} value={i18n.language} options={i18n.languages} />;
+  const options = useMemo(() => {
+    return i18n.languages.map(lang => ({ value: lang, title: lang }));
+  }, [i18n]);
+
+  return <Select onChange={handleChange} value={i18n.language} options={options} />;
 };
 
 export default memo(LanguageSwitcher);

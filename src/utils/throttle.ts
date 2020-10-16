@@ -1,9 +1,10 @@
 // eslint-disable-next-line
-export const throttle = (func: Function, ms: number): ((...args: any[]) => void) => {
+type Throttle = (func: Function, ms: number) => (...args: any[]) => void;
+
+export const throttle: Throttle = (func, ms) => {
   let isThrottled = false;
 
-  // eslint-disable-next-line
-  return (...args: any[]): void => {
+  return (...args) => {
     if (!isThrottled) {
       func(...args);
 

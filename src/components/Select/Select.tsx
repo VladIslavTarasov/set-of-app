@@ -6,12 +6,12 @@ import { useClickOutside } from 'hooks';
 import Option from './Option';
 import style from './Select.module.scss';
 
-export type Option = { id: string; title: string } | string;
+export type Option = { value: string; title: string };
 
 interface SelectProps {
   value: string;
   options: Option[];
-  onChange: (value: Option) => void;
+  onChange: (value: string) => void;
 }
 
 const Select: React.FC<SelectProps> = ({ value, options, onChange }) => {
@@ -23,13 +23,13 @@ const Select: React.FC<SelectProps> = ({ value, options, onChange }) => {
   }, []);
 
   const handleClose = useCallback(() => {
-    toogle(() => false);
+    toogle(false);
   }, []);
 
   const handldeChange = useCallback(
     (val: Option) => {
       toogle(prev => !prev);
-      onChange(val);
+      onChange(val.value);
     },
     [onChange]
   );
@@ -43,9 +43,8 @@ const Select: React.FC<SelectProps> = ({ value, options, onChange }) => {
       </Button>
       {open && Boolean(options.length) && (
         <ul className={style.list} role="listbox">
-          {options.map((option, i) => (
-            // eslint-disable-next-line
-            <Option key={i} onChange={handldeChange} value={value} option={option} />
+          {options.map(option => (
+            <Option key={option.value} onChange={handldeChange} value={value} option={option} />
           ))}
         </ul>
       )}

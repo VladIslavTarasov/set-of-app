@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -8,6 +8,7 @@ import style from './Container.module.scss';
 
 export interface TabsContainerProps {
   active: string;
+  onChange?: (e: React.MouseEvent, value: string) => void;
   classNames?: {
     container?: string;
     tablist?: string;
@@ -16,12 +17,26 @@ export interface TabsContainerProps {
   };
 }
 
-const TabsContainer: React.FC<TabsContainerProps> = ({ children, active, classNames }) => {
+const TabsContainer: React.FC<TabsContainerProps> = ({
+  children,
+  active,
+  onChange,
+  classNames,
+}) => {
   const [activeValue, setActiveValue] = useState<string>(active);
 
-  const handleClick = useCallback(value => {
-    setActiveValue(value);
-  }, []);
+  useEffect(() => {
+    if (active) setActiveValue(active);
+  }, [active]);
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent, value: string) => {
+      if (onChange) onChange(e, value);
+
+      setActiveValue(value);
+    },
+    [onChange]
+  );
 
   const tabs = useMemo(() => {
     return React.Children.map(children, child => {

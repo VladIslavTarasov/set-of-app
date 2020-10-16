@@ -1,6 +1,8 @@
 import { useCallback, useEffect, RefObject } from 'react';
 
-export const useClickOutside = (element: RefObject<HTMLElement>, callback: () => void) => {
+type UseClickOutside = (element: RefObject<HTMLElement>, callback: () => void) => void;
+
+export const useClickOutside: UseClickOutside = (element, callback) => {
   const clickOutSide = useCallback(
     e => {
       if (element.current && !element.current.contains(e.target)) {

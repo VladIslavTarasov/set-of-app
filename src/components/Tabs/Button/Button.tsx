@@ -5,15 +5,15 @@ import cn from 'classnames';
 import style from './Button.module.scss';
 
 interface ButtonProps {
-  onClick: (value: string) => void;
+  onClick: (e: React.MouseEvent, value: string) => void;
   value: string;
   selected: boolean;
   classNames?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({ onClick, value, selected, classNames, ...props }) => {
-  const handleChange = () => {
-    if (!selected) onClick(value);
+  const handleChange = (e: React.MouseEvent) => {
+    if (!selected) onClick(e, value);
   };
 
   return (

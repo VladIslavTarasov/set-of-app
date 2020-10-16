@@ -12,28 +12,37 @@ interface HeaderProps {
   currentMonth: string;
 }
 
-const months = moment.months();
+const months = moment.months().map(month => ({
+  value: month,
+  title: month,
+}));
 
 const Header: React.FC<HeaderProps> = ({ currentMonth }) => {
   const dispatch = useContext(CalendarDispatch);
   const [year, month] = useMemo(() => currentMonth.split(' '), [currentMonth]);
 
   const handleChangeYear = useCallback(
-    newYear => {
+    (newYear: string) => {
       dispatch(calendarActions.changeDate(`${newYear} ${month}`));
     },
     [dispatch, month]
   );
 
   const handleChangeMonth = useCallback(
-    newMonth => {
+    (newMonth: string) => {
       dispatch(calendarActions.changeDate(`${year} ${newMonth}`));
     },
     [dispatch, year]
   );
 
   const yearsOptions = useMemo(() => {
-    return Array.from(Array(21), (_, i) => `${Number(year) + 10 - i}`);
+    return Array.from(Array(21), (_, i) => {
+      const value = `${Number(year) + 10 - i}`;
+      return {
+        value,
+        title: value,
+      };
+    });
   }, [year]);
 
   return (

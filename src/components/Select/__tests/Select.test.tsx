@@ -11,9 +11,12 @@ describe('components/Select', () => {
 
     const selectProps = {
       value: '1',
-      options: ['1', '2', '3', '4', '5'],
+      options: [
+        { value: '1', title: '1' },
+        { value: '2', title: '2' },
+      ],
       // eslint-disable-next-line
-      onChange: () => {},
+      onChange: (value: string) => {},
     };
 
     const { container, getByText } = render(<Select {...selectProps} />);

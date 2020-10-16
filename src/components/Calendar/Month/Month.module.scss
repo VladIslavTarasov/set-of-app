@@ -1,6 +1,10 @@
 .table {
   flex-grow: 1;
-  border: 2px solid var(--black1);
+  border: 2px solid var(--gray);
+
+  > thead {
+    border-bottom: 2px solid var(--gray);
+  }
 }
 
 .day {
@@ -14,6 +18,7 @@
 }
 
 .dayHead {
+  padding: var(--offset-sm) 0;
   background-color: var(--black1);
 }
 
