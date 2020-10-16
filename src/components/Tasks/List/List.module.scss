@@ -28,6 +28,14 @@
   }
 }
 
+.complete {
+  background-color: var(--green2);
+}
+
+.important {
+  background-color: var(--red2);
+}
+
 .tasksLoading {
   position: fixed;
   z-index: var(--z-modal);

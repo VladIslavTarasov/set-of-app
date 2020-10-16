@@ -6,6 +6,7 @@ export default {
   },
   tabs: {
     all: 'Все',
+    uncomplete: 'Не выполненные',
     complete: 'Выполненные',
     important: 'Важные',
   },
@@ -16,13 +17,15 @@ export default {
     showList: 'Показать полностью',
     delete: 'Удалить задачу',
     edit: 'Редактировать задачу',
-    done: 'Выполнено'
+    done: 'Выполнено',
+    reset: 'Сброс',
   },
   tasks: {
     formCheckbox: 'Важно',
     formTitle: 'Название',
     formDescription: 'Описание',
     empty: 'Нет заданий',
+    filter: 'Фильтровать по названию',
   },
   errorMessages: {
     required: 'Обязательное поле',

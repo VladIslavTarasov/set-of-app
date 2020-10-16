@@ -6,7 +6,8 @@ export default {
   },
   tabs: {
     all: 'All',
-    complete: 'Complete',
+    uncomplete: 'Uncompleted',
+    complete: 'Completed',
     important: 'Important',
   },
   buttons: {
@@ -16,6 +17,7 @@ export default {
     showList: 'Show full description',
     delete: 'Delete task',
     edit: 'Edit Task',
+    reset: 'Reset',
     done: 'Done',
   },
   tasks: {
@@ -23,6 +25,7 @@ export default {
     formTitle: 'Title',
     formDescription: 'Description',
     empty: 'No tasks',
+    filter: 'Filter by title',
   },
   errorMessages: {
     required: 'Required',

@@ -1,0 +1,25 @@
+.form {
+  position: relative;
+  display: flex;
+  max-width: 700px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--offset-sm);
+  margin: 0 auto;
+}
+
+.input {
+  width: 100%;
+  padding: var(--offset-sm) var(--offset-xl) var(--offset-sm) var(--offset-sm);
+  border: none;
+  border-bottom: 2px solid var(--gray);
+  font-size: var(--fs-md);
+}
+
+.reset {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
