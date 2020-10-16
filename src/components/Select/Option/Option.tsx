@@ -13,8 +13,7 @@ interface OptionProps {
 
 const Option: React.FC<OptionProps> = ({ onChange, option, value }) => {
   const ref = useRef<HTMLLIElement>(null);
-  const optionTitle = typeof option === 'string' ? option : option.title;
-  const selected = optionTitle === value;
+  const selected = option.value === value;
 
   const handleClick = () => {
     onChange(option);
@@ -39,12 +38,12 @@ const Option: React.FC<OptionProps> = ({ onChange, option, value }) => {
       onKeyDown={handleKeyDown}
       onClick={handleClick}
       className={cn(style.item, { [style.selected]: selected })}
-      title={optionTitle}
+      title={option.title}
       role="option"
       aria-selected={selected}
       tabIndex={0}
     >
-      {optionTitle}
+      {option.title}
     </li>
   );
 };

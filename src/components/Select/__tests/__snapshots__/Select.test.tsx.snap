@@ -48,33 +48,6 @@ exports[`components/Select show/hide options by click 2`] = `
       >
         2
       </li>
-      <li
-        aria-selected="false"
-        class="item"
-        role="option"
-        tabindex="0"
-        title="3"
-      >
-        3
-      </li>
-      <li
-        aria-selected="false"
-        class="item"
-        role="option"
-        tabindex="0"
-        title="4"
-      >
-        4
-      </li>
-      <li
-        aria-selected="false"
-        class="item"
-        role="option"
-        tabindex="0"
-        title="5"
-      >
-        5
-      </li>
     </ul>
   </div>
 </div>

@@ -15,10 +15,11 @@
 
 .wrapper {
   display: flex;
-  max-width: 1024px;
+  max-width: 1440px;
   height: 100%;
   align-items: center;
   justify-content: space-between;
+  padding: 0 var(--offset-sm);
   margin: 0 auto;
 }
 
