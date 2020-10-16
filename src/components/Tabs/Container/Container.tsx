@@ -8,6 +8,7 @@ import style from './Container.module.scss';
 
 export interface TabsContainerProps {
   active: string;
+  pannel?: JSX.Element;
   onChange?: (e: React.MouseEvent, value: string) => void;
   classNames?: {
     container?: string;
@@ -20,6 +21,7 @@ export interface TabsContainerProps {
 const TabsContainer: React.FC<TabsContainerProps> = ({
   children,
   active,
+  pannel,
   onChange,
   classNames,
 }) => {
@@ -65,6 +67,7 @@ const TabsContainer: React.FC<TabsContainerProps> = ({
         ))}
       </div>
 
+      {pannel}
       {tabs.find(({ value }) => value === activeValue)?.component}
     </div>
   );

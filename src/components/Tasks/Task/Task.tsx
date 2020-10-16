@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { AiTwotoneEdit, AiTwotoneDelete } from 'react-icons/ai';
 import { BiShow, BiHide } from 'react-icons/bi';
 import { ImFire } from 'react-icons/im';
-import { MdDone } from 'react-icons/md';
+import { MdDone, MdDoneAll } from 'react-icons/md';
 
 import Button from 'components/Button';
 import { TasksDispatch } from 'context/tasksDispatch';
@@ -62,6 +62,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
       >
         <div className={style.titleWrapper}>
           {important && <ImFire color="red" fontSize="medium" />}
+          {complete && <MdDoneAll color="green" fontSize="medium" />}
           <h5 className={style.title}>{title}</h5>
         </div>
         {description.map((item, i) => (
