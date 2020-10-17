@@ -1,4 +1,3 @@
-import moment from 'moment';
 import { createSelector } from 'reselect';
 
 import * as tasksTypes from 'store/tasks/tasks.types';
@@ -11,7 +10,7 @@ export const makeGetMapTasks = () => {
     getSlice,
     (_: tasksTypes.State, filterValue: string) => filterValue,
     ({ tasks, choosenDate }, filterValue) => {
-      const tasksByDate = tasks?.[moment(choosenDate).format('YYYY-MM')] ?? [];
+      const tasksByDate = tasks?.[choosenDate] ?? [];
 
       const filteredTasksList = filterValue.length
         ? tasksByDate.filter(({ title }) => title.toLowerCase().includes(filterValue.toLowerCase()))

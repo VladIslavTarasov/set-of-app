@@ -65,7 +65,7 @@
     "server": "node ./stubs",
     "server:dev": "nodemon ./stubs",
     "build": "react-scripts build",
-    "test:unit": "react-scripts test --passWithNoTests --updateSnapshot",
+    "test:unit": "react-scripts test --passWithNoTests",
     "cy:open": "cross-env cypress open",
     "cy:run": "cross-env cypress run --headless",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx,json}\"",

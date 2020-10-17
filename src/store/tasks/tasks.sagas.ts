@@ -3,6 +3,7 @@ import { takeEvery, put, all, call, select } from 'redux-saga/effects';
 
 import * as tasksApi from 'api/tasks/tasks.api';
 import * as tasksActions from 'store/tasks/tasks.actions';
+import { getSlice } from 'store/tasks/tasks.selectors';
 import * as tasksTypes from 'store/tasks/tasks.types';
 import { ResponseStatuses } from 'store/types';
 
@@ -10,10 +11,8 @@ export function* tasksRequest() {
   try {
     yield put(tasksActions.setGetRequestStatus(ResponseStatuses.PENDING));
 
-    const choosenDate = yield select((state: tasksTypes.State) =>
-      moment(state.choosenDate).format('YYYY-MM')
-    );
-    const { data } = yield call(tasksApi.getTasks, choosenDate);
+    const { choosenDate } = yield select(getSlice);
+    const { data } = yield call(tasksApi.getTasks, moment(choosenDate).format('YYYY-MM'));
 
     yield put(tasksActions.setTasks(data.body?.tasks as Record<string, tasksTypes.Task[]>));
     yield put(tasksActions.setGetRequestStatus(ResponseStatuses.SUCCESS));
@@ -28,11 +27,9 @@ export function* createTaskRequest(action: tasksTypes.CreateTaskAction) {
   try {
     yield put(tasksActions.setCreateRequestStatus(ResponseStatuses.PENDING));
 
-    const choosenDate = yield select((state: tasksTypes.State) =>
-      moment(state.choosenDate).format('YYYY-MM')
-    );
-
+    const { choosenDate } = yield select(getSlice);
     yield call(tasksApi.createTask, choosenDate, action.payload);
+
     yield put(tasksActions.setCreateRequestStatus(ResponseStatuses.SUCCESS));
     yield put(tasksActions.getTasksRequest());
   } catch (err) {
@@ -44,14 +41,15 @@ export function* createTaskRequest(action: tasksTypes.CreateTaskAction) {
 
 export function* putTaskRequest(action: tasksTypes.PutTaskAction) {
   try {
+    const { choosenDate, editTask } = yield select(getSlice);
+
     yield put(tasksActions.setEditRequestStatus(ResponseStatuses.PENDING));
 
-    const { choosenDate, editTask } = yield select((state: tasksTypes.State) => ({
-      choosenDate: moment(state.choosenDate).format('YYYY-MM'),
-      editTask: state.editTask,
-    }));
+    yield call(tasksApi.editTask, choosenDate, {
+      ...editTask,
+      ...action.payload,
+    });
 
-    yield call(tasksApi.editTask, choosenDate, { ...editTask, ...action.payload });
     yield put(tasksActions.setEditRequestStatus(ResponseStatuses.SUCCESS));
     yield put(tasksActions.getTasksRequest());
   } catch (err) {
@@ -65,11 +63,9 @@ export function* deleteTaskRequest(action: tasksTypes.DeleteTaskAction) {
   try {
     yield put(tasksActions.setDeleteRequestStatus(ResponseStatuses.PENDING));
 
-    const choosenDate = yield select((state: tasksTypes.State) =>
-      moment(state.choosenDate).format('YYYY-MM')
-    );
-
+    const { choosenDate } = yield select(getSlice);
     yield call(tasksApi.deleteTask, choosenDate, action.payload);
+
     yield put(tasksActions.setDeleteRequestStatus(ResponseStatuses.SUCCESS));
     yield put(tasksActions.getTasksRequest());
   } catch (err) {
@@ -83,11 +79,9 @@ export function* completeTaskRequest(action: tasksTypes.DeleteTaskAction) {
   try {
     yield put(tasksActions.setCompleteRequestStatus(ResponseStatuses.PENDING));
 
-    const choosenDate = yield select((state: tasksTypes.State) =>
-      moment(state.choosenDate).format('YYYY-MM')
-    );
-
+    const { choosenDate } = yield select(getSlice);
     yield call(tasksApi.completeTask, choosenDate, action.payload);
+
     yield put(tasksActions.setCompleteRequestStatus(ResponseStatuses.SUCCESS));
     yield put(tasksActions.getTasksRequest());
   } catch (err) {
