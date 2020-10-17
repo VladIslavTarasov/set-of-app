@@ -1,25 +1,20 @@
-import React, { memo, useContext, useMemo, useEffect, useState, useCallback } from 'react';
+import React, { memo, useMemo, useEffect, useState, useCallback } from 'react';
 
 import moment from 'moment';
 import { useTranslation } from 'react-i18next';
 import { AiOutlineFileAdd } from 'react-icons/ai';
+import { useDispatch, useSelector } from 'react-redux';
 
-import * as apiTasks from 'api/tasks/tasks.api';
 import Button from 'components/Button';
 import TaskForm from 'components/Tasks/Form';
-import { TasksDispatch } from 'context/tasksDispatch';
 import * as tasksActions from 'store/tasks/tasks.actions';
-import * as tasksTypes from 'store/tasks/tasks.types';
-import { ResponseStatuses } from 'types';
+import { getSlice } from 'store/tasks/tasks.selectors';
+import { ResponseStatuses } from 'store/types';
 
 import style from './TodoListFormsContainer.module.scss';
 
 interface TodoListFormsContainerProps {
-  choosenDate: string;
   currentDate: string;
-  editTask: tasksTypes.Task | null;
-  createTaskRequestStatus: ResponseStatuses;
-  editTaskRequestStatus: ResponseStatuses;
 }
 
 enum ActiveForm {
@@ -28,62 +23,47 @@ enum ActiveForm {
   NULL,
 }
 
-const TodoListFormsContainer: React.FC<TodoListFormsContainerProps> = ({
-  choosenDate,
-  currentDate,
-  editTask,
-  createTaskRequestStatus,
-  editTaskRequestStatus,
-}) => {
+const TodoListFormsContainer: React.FC<TodoListFormsContainerProps> = ({ currentDate }) => {
   const { t } = useTranslation('todo');
-  const dispatch = useContext(TasksDispatch);
   const [activeForm, setActiveForm] = useState<ActiveForm>(ActiveForm.NULL);
+  const dispatch = useDispatch();
+  const { choosenDate, createTaskRequestStatus, editTaskRequestStatus, editTask } = useSelector(
+    getSlice
+  );
 
   useEffect(() => {
     if (editTask) {
-      setActiveForm(() => ActiveForm.EDIT);
+      setActiveForm(ActiveForm.EDIT);
     }
   }, [editTask]);
 
   const handleCloseForm = useCallback(() => {
-    setActiveForm(() => ActiveForm.NULL);
+    setActiveForm(ActiveForm.NULL);
   }, []);
 
   const handleOpenForm = useCallback(() => {
-    setActiveForm(() => ActiveForm.CREATE);
+    setActiveForm(ActiveForm.CREATE);
   }, []);
 
-  const handleSubmit = useCallback(
-    async values => {
-      const request = editTask ? apiTasks.editTask : apiTasks.createTask;
-      const nameRequest = editTask ? 'edit' : 'create';
-      const submitValues = editTask
-        ? {
-            ...editTask,
-            ...values,
-          }
-        : values;
-
-      dispatch(tasksActions.setRequestStatusPending(nameRequest));
-      try {
-        await request(choosenDate, submitValues);
-        dispatch(tasksActions.setRequestStatusSuccess(nameRequest));
-      } catch (err) {
-        // TODO stubs errors codes
-        if (err.isAxiosError) {
-          dispatch(tasksActions.setRequestStatusFailure(nameRequest));
-        }
-      } finally {
-        handleCloseForm();
-      }
+  const handleCreateTask = useCallback(
+    values => {
+      dispatch(tasksActions.createTaskRequest(values));
+      setActiveForm(ActiveForm.NULL);
     },
-    [choosenDate, editTask, dispatch, handleCloseForm]
+    [dispatch]
+  );
+  const handleEditTask = useCallback(
+    values => {
+      dispatch(tasksActions.editTaskRequest(values));
+      setActiveForm(ActiveForm.NULL);
+    },
+    [dispatch]
   );
 
-  const isDisabled = useMemo(() => moment(currentDate).unix() > moment(choosenDate).unix(), [
-    choosenDate,
-    currentDate,
-  ]);
+  const isDisabled = useMemo(
+    () => moment(new Date(currentDate)).unix() > moment(new Date(choosenDate)).unix(),
+    [choosenDate, currentDate]
+  );
 
   const isSubmitingForm = useMemo(
     () => [createTaskRequestStatus, editTaskRequestStatus].includes(ResponseStatuses.PENDING),
@@ -109,7 +89,7 @@ const TodoListFormsContainer: React.FC<TodoListFormsContainerProps> = ({
           mode="create"
           loading={isSubmitingForm}
           onClose={handleCloseForm}
-          onSubmit={handleSubmit}
+          onSubmit={handleCreateTask}
         />
       )}
 
@@ -119,7 +99,7 @@ const TodoListFormsContainer: React.FC<TodoListFormsContainerProps> = ({
           task={editTask}
           loading={isSubmitingForm}
           onClose={handleCloseForm}
-          onSubmit={handleSubmit}
+          onSubmit={handleEditTask}
         />
       )}
     </>

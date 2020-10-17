@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-import { ResponseStatuses } from 'types';
+import { ResponseStatuses } from 'store/types';
 
 import * as tasksTypes from './tasks.types';
 
@@ -13,10 +13,13 @@ export const initial: tasksTypes.State = {
   editTaskRequestStatus: ResponseStatuses.UNCALLED,
   deleteTaskRequestStatus: ResponseStatuses.UNCALLED,
   getTasksRequestStatus: ResponseStatuses.UNCALLED,
-  completeTasksRequestStatus: ResponseStatuses.UNCALLED,
+  completeTaskRequestStatus: ResponseStatuses.UNCALLED,
 };
 
-const tasksReducer = (state: tasksTypes.State, action: tasksTypes.Actions): tasksTypes.State => {
+const tasksReducer = (
+  state: tasksTypes.State = initial,
+  action: tasksTypes.Actions
+): tasksTypes.State => {
   switch (action.type) {
     case tasksTypes.SET_TASKS:
       return {
@@ -29,19 +32,18 @@ const tasksReducer = (state: tasksTypes.State, action: tasksTypes.Actions): task
       return { ...state, choosenDate: action.payload };
     case tasksTypes.SET_EDIT_TASK:
       return { ...state, editTask: action.payload };
-    case tasksTypes.SET_REQUEST_STATUS_PENDING:
-      return { ...state, [`${action.payload}TaskRequestStatus`]: ResponseStatuses.PENDING };
-    case tasksTypes.SET_REQUEST_STATUS_SUCCESS:
-      return { ...state, [`${action.payload}TaskRequestStatus`]: ResponseStatuses.SUCCESS };
-    case tasksTypes.SET_REQUEST_STATUS_FAILURE:
-      return { ...state, [`${action.payload}TaskRequestStatus`]: ResponseStatuses.FAILURE };
-    case tasksTypes.SET_REQUEST_STATUS_UNCALLED:
+    case tasksTypes.SET_GET_REQUEST_STATUS:
+      return { ...state, getTasksRequestStatus: action.payload };
+    case tasksTypes.SET_EDIT_REQUEST_STATUS:
+      return { ...state, editTaskRequestStatus: action.payload };
+    case tasksTypes.SET_CREATE_REQUEST_STATUS:
+      return { ...state, createTaskRequestStatus: action.payload };
+    case tasksTypes.SET_DELETE_REQUEST_STATUS:
+      return { ...state, deleteTaskRequestStatus: action.payload };
+    case tasksTypes.SET_COMPLETE_REQUEST_STATUS:
       return {
         ...state,
-        createTaskRequestStatus: ResponseStatuses.UNCALLED,
-        editTaskRequestStatus: ResponseStatuses.UNCALLED,
-        deleteTaskRequestStatus: ResponseStatuses.UNCALLED,
-        getTasksRequestStatus: ResponseStatuses.UNCALLED,
+        completeTaskRequestStatus: action.payload,
       };
     default:
       return state;

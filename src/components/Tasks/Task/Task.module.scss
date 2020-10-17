@@ -35,11 +35,3 @@
     margin-bottom: 0;
   }
 }
-
-.actions {
-  display: flex;
-
-  > button:not(:first-child) {
-    margin-left: var(--offset-sm);
-  }
-}

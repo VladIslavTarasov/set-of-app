@@ -3,7 +3,7 @@
 exports[`components/Calendar /Day 1`] = `
 <div>
   <button
-    class="button activeMonth"
+    class="button activeMonth past"
     title="2020-05-5"
     type="button"
   >

@@ -3,10 +3,6 @@ import moment from 'moment';
 describe('header', () => {
   const langs = ['en', 'ru'];
 
-  beforeEach(() => {
-    cy.server();
-  });
-
   it('switch language', () => {
     cy.visit('http://localhost:3000/');
     cy.viewport(1800, 950);

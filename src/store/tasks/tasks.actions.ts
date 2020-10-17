@@ -1,4 +1,34 @@
+import { ResponseStatuses } from 'store/types';
+
 import * as tasksTypes from './tasks.types';
+
+export const getTasksRequest: tasksTypes.GetTasksActionCreator = () => ({
+  type: tasksTypes.GET_TASKS_REQUEST,
+});
+
+export const createTaskRequest: tasksTypes.CreateTaskActionCreator = (
+  task: Omit<tasksTypes.Task, 'id' | 'complete'>
+) => ({
+  type: tasksTypes.CREATE_TASK_REQUEST,
+  payload: task,
+});
+
+export const editTaskRequest: tasksTypes.PutTaskActionCreator = (
+  task: Omit<tasksTypes.Task, 'id' | 'complete'>
+) => ({
+  type: tasksTypes.PUT_TASK_REQUEST,
+  payload: task,
+});
+
+export const deleteTaskRequest: tasksTypes.DeleteTaskActionCreator = (id: string) => ({
+  type: tasksTypes.DELETE_TASK_REQUEST,
+  payload: id,
+});
+
+export const completeTaskRequest: tasksTypes.CompleteTaskActionCreator = (id: string) => ({
+  type: tasksTypes.COMPLETE_TASK_REQUEST,
+  payload: id,
+});
 
 export const setTasks: tasksTypes.SetTasksActionCreator = (
   tasks: Record<string, tasksTypes.Task[]>
@@ -17,27 +47,37 @@ export const setEditTask: tasksTypes.EditTaskActionCreator = (task: tasksTypes.T
   payload: task,
 });
 
-export const setRequestStatusPending: tasksTypes.SetRequestStatusPendingActionCreator = (
-  name: tasksTypes.SetRequestStatusPendingActionPayload
+export const setGetRequestStatus: tasksTypes.SetGetRequestStatusActionCreator = (
+  status: ResponseStatuses
 ) => ({
-  type: tasksTypes.SET_REQUEST_STATUS_PENDING,
-  payload: name,
+  type: tasksTypes.SET_GET_REQUEST_STATUS,
+  payload: status,
 });
 
-export const setRequestStatusSuccess: tasksTypes.SetRequestStatusSuccessActionCreator = (
-  name: tasksTypes.SetRequestStatusSuccessActionPayload
+export const setCreateRequestStatus: tasksTypes.SetCreateRequestStatusActionCreator = (
+  status: ResponseStatuses
 ) => ({
-  type: tasksTypes.SET_REQUEST_STATUS_SUCCESS,
-  payload: name,
+  type: tasksTypes.SET_CREATE_REQUEST_STATUS,
+  payload: status,
 });
 
-export const setRequestStatusFailure: tasksTypes.SetRequestStatusFailureActionCreator = (
-  name: tasksTypes.SetRequestStatusFailureActionPayload
+export const setEditRequestStatus: tasksTypes.SetEditRequestStatusActionCreator = (
+  status: ResponseStatuses
 ) => ({
-  type: tasksTypes.SET_REQUEST_STATUS_FAILURE,
-  payload: name,
+  type: tasksTypes.SET_EDIT_REQUEST_STATUS,
+  payload: status,
 });
 
-export const setRequestStatusUncalled: tasksTypes.SetRequestStatusUncalledActionCreator = () => ({
-  type: tasksTypes.SET_REQUEST_STATUS_UNCALLED,
+export const setDeleteRequestStatus: tasksTypes.SetDeleteRequestStatusActionCreator = (
+  status: ResponseStatuses
+) => ({
+  type: tasksTypes.SET_DELETE_REQUEST_STATUS,
+  payload: status,
+});
+
+export const setCompleteRequestStatus: tasksTypes.SetCompleteRequestStatusActionCreator = (
+  status: ResponseStatuses
+) => ({
+  type: tasksTypes.SET_COMPLETE_REQUEST_STATUS,
+  payload: status,
 });

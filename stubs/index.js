@@ -14,6 +14,6 @@ app.use(cors());
 app.use(express.json());
 
 app.route('/tasks/:date').get(get).post(create).delete(remove).put(edit);
-app.route('/task/compelete/:date').put(complete)
+app.route('/task/compelete/:date').put(complete);
 
 app.listen(port);

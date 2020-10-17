@@ -21,7 +21,7 @@ export const formatCalendarData: FormatCalendarData = array => {
 };
 
 export const getPrevMonth = (date: string): CalendarDay[] => {
-  const localDate = moment(date);
+  const localDate = moment(new Date(date));
   const startDayOfMonth = Number(localDate.format('d'));
   const prevMonth = localDate.subtract(1, 'months');
   const dayInPrevMonth = prevMonth.daysInMonth();
@@ -46,7 +46,7 @@ export const getNextMonth = (date: string, arrayLength: number): CalendarDay[] =
     maxArraySize = 35;
   }
 
-  const nextMonthFormat = moment(date).subtract(-1, 'months').format('YYYY-MM');
+  const nextMonthFormat = moment(new Date(date)).subtract(-1, 'months').format('YYYY-MM');
 
   return Array.from(Array(maxArraySize - arrayLength), (_, i) => ({
     day: i + 1,
@@ -57,7 +57,7 @@ export const getNextMonth = (date: string, arrayLength: number): CalendarDay[] =
 };
 
 export const getCurrentMonth = (date: string): CalendarDay[] => {
-  const momentDate = moment(date);
+  const momentDate = moment(new Date(date));
   const dayInMonth = momentDate.daysInMonth();
   const month = momentDate.format('YYYY-MM');
   const dayNow = moment().format('YYYY-MM-D');

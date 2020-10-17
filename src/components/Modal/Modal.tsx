@@ -17,7 +17,7 @@ const Modal: React.FC<ModalProps> = ({ title, description, onClose, children }) 
   const { t } = useTranslation('buttons');
 
   return createPortal(
-    <div className={style.container}>
+    <div data-testid="modal" className={style.container}>
       <div className={style.modal} role="dialog">
         {title && (
           <header className={style.header}>

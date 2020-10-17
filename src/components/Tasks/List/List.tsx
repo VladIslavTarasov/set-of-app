@@ -2,27 +2,34 @@ import React, { memo, useMemo, useState, useCallback } from 'react';
 
 import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 import Loader from 'components/Loader';
 import Tabs from 'components/Tabs';
-import FiterList from 'components/Tasks/FiterList';
+import FiterList from 'components/Tasks/FilterList';
 import TaskItem from 'components/Tasks/Task';
-import { Task } from 'store/tasks/tasks.types';
+import { makeGetMapTasks } from 'store/tasks/tasks.selectors';
+import { TasksMap, State } from 'store/tasks/tasks.types';
+import { RootState } from 'store/types';
 import { debounce } from 'utils/debounce';
 
-import { makeTasksMap, filterTasks } from './helpers';
 import style from './List.module.scss';
 
 interface ListProps {
-  tasks: Task[] | null;
   loading: boolean;
-  onDelete: (id: string) => void;
-  onComplete: (id: string) => void;
 }
 
-const List: React.FC<ListProps> = ({ tasks: propsTasks, loading, onDelete, onComplete }) => {
+const List: React.FC<ListProps> = ({ loading }) => {
   const { t } = useTranslation(['tabs', 'tasks']);
   const [inputValue, setValue] = useState<string>('');
+
+  const getMapTasks = useMemo(makeGetMapTasks, []);
+
+  const { complete, uncomplete, important, all } = useSelector<RootState & State, TasksMap>(
+    state => {
+      return getMapTasks(state, inputValue);
+    }
+  );
 
   const handleChange = useCallback(
     debounce((_: React.ChangeEvent, filterValue: string) => {
@@ -35,25 +42,23 @@ const List: React.FC<ListProps> = ({ tasks: propsTasks, loading, onDelete, onCom
     setValue('');
   }, []);
 
-  const tasksMap = useMemo(() => makeTasksMap(propsTasks), [propsTasks]);
-
   const tabs = useMemo(
     () => [
-      { value: t('all'), tasks: filterTasks(inputValue, propsTasks) },
+      { value: t('all'), tasks: all },
       {
         value: t('uncomplete'),
-        tasks: filterTasks(inputValue, tasksMap?.uncomplete),
+        tasks: uncomplete,
       },
       {
         value: t('important'),
-        tasks: filterTasks(inputValue, tasksMap?.important),
+        tasks: important,
       },
       {
         value: t('complete'),
-        tasks: filterTasks(inputValue, tasksMap?.complete),
+        tasks: complete,
       },
     ],
-    [t, inputValue, tasksMap, propsTasks]
+    [t, all, complete, uncomplete, important]
   );
 
   return (
@@ -61,7 +66,9 @@ const List: React.FC<ListProps> = ({ tasks: propsTasks, loading, onDelete, onCom
       {loading && <Loader size="lg" mode="circle" classNames={style.tasksLoading} />}
       <Tabs.Container
         active={t('all')}
-        pannel={<FiterList onChange={handleChange} onReset={handleReset} showButton={!!inputValue} />}
+        pannel={
+          <FiterList onChange={handleChange} onReset={handleReset} showButton={!!inputValue} />
+        }
       >
         {tabs.map(({ value, tasks }) => (
           <Tabs.Content key={value} value={value}>
@@ -69,13 +76,13 @@ const List: React.FC<ListProps> = ({ tasks: propsTasks, loading, onDelete, onCom
               <ul className={style.ul}>
                 {tasks.map(task => (
                   <li
+                    key={task.id}
                     className={cn(style.li, {
                       [style.complete]: task.complete,
                       [style.important]: task.important,
                     })}
-                    key={task.id}
                   >
-                    <TaskItem onDelete={onDelete} onComplete={onComplete} task={task} />
+                    <TaskItem task={task} />
                   </li>
                 ))}
               </ul>
