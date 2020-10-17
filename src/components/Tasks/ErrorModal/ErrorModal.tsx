@@ -1,32 +1,22 @@
-import React, { memo, useContext, useCallback, useMemo } from 'react';
+import React, { memo, useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 import Modal from 'components/Modal';
-import { TasksDispatch } from 'context/tasksDispatch';
-import * as tasksActions from 'store/tasks/tasks.actions';
-import { ResponseStatuses } from 'types';
+import { getSlice } from 'store/tasks/tasks.selectors';
+import { ResponseStatuses } from 'store/types';
 
-interface ErrorModalProps {
-  createTaskRequestStatus: ResponseStatuses;
-  editTaskRequestStatus: ResponseStatuses;
-  deleteTaskRequestStatus: ResponseStatuses;
-  getTasksRequestStatus: ResponseStatuses;
-}
+interface ErrorModalProps {}
 
-const ErrorModal: React.FC<ErrorModalProps> = ({
-  createTaskRequestStatus,
-  editTaskRequestStatus,
-  deleteTaskRequestStatus,
-  getTasksRequestStatus,
-}) => {
-  // TODO stubs errors codes
+const ErrorModal: React.FC<ErrorModalProps> = () => {
   const { t } = useTranslation('errors');
-  const dispatch = useContext(TasksDispatch);
-
-  const handleClose = useCallback(() => {
-    dispatch(tasksActions.setRequestStatusUncalled());
-  }, [dispatch]);
+  const {
+    createTaskRequestStatus,
+    editTaskRequestStatus,
+    deleteTaskRequestStatus,
+    getTasksRequestStatus,
+  } = useSelector(getSlice);
 
   const hasError = useMemo(
     () =>
@@ -35,13 +25,11 @@ const ErrorModal: React.FC<ErrorModalProps> = ({
         editTaskRequestStatus,
         deleteTaskRequestStatus,
         getTasksRequestStatus,
-      ].includes(ResponseStatuses.FAILURE) || null,
+      ].includes(ResponseStatuses.FAILURE),
     [createTaskRequestStatus, editTaskRequestStatus, deleteTaskRequestStatus, getTasksRequestStatus]
   );
 
-  return (
-    hasError && <Modal title={t('title')} description={t('description')} onClose={handleClose} />
-  );
+  return <>{hasError && <Modal title={t('title')} description={t('description')} />}</>;
 };
 
 export default memo(ErrorModal);

@@ -55,7 +55,7 @@ const Day: React.FC<DayProps> = ({
       className={cn(style.button, {
         [style.activeMonth]: isActiveMonth,
         [style.today]: isToday,
-        [style.past]: moment(date).unix() <= now && !isToday,
+        [style.past]: moment(new Date(date)).unix() <= now && !isToday,
         [style.choosen]: choosenDate === date,
         [style.disabled]: loading,
       })}

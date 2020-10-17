@@ -1,4 +1,4 @@
-import { ResponseStatuses } from 'types';
+import { ResponseStatuses } from 'store/types';
 
 export interface Task {
   id: string;
@@ -17,8 +17,18 @@ export interface State {
   readonly editTaskRequestStatus: ResponseStatuses;
   readonly deleteTaskRequestStatus: ResponseStatuses;
   readonly getTasksRequestStatus: ResponseStatuses;
-  readonly completeTasksRequestStatus: ResponseStatuses;
+  readonly completeTaskRequestStatus: ResponseStatuses;
 }
+
+export type TasksMap = Record<'complete' | 'uncomplete' | 'important' | 'all', Task[]>;
+
+export const GET_TASKS_REQUEST = 'TASKS/GET_TASKS_REQUEST';
+
+export type GetTasksAction = {
+  type: typeof GET_TASKS_REQUEST;
+};
+
+export type GetTasksActionCreator = () => GetTasksAction;
 
 export const SET_TASKS = 'TASKS/SET_TASKS';
 
@@ -47,63 +57,111 @@ export type EditTaskAction = {
 
 export type EditTaskActionCreator = (task: Task | null) => EditTaskAction;
 
-export const SET_REQUEST_STATUS_PENDING = 'TASKS/SET_REQUEST_STATUS_PENDING';
+export const CREATE_TASK_REQUEST = 'TASKS/CREATE_TASK_REQUEST';
 
-export type SetRequestStatusPendingActionPayload =
-  | 'delete'
-  | 'create'
-  | 'edit'
-  | 'get'
-  | 'complete';
+export type CreateTaskActionPayload = Omit<Task, 'id' | 'complete'>;
 
-export type SetRequestStatusPendingAction = {
-  type: typeof SET_REQUEST_STATUS_PENDING;
-  payload: SetRequestStatusPendingActionPayload;
+export type CreateTaskAction = {
+  type: typeof CREATE_TASK_REQUEST;
+  payload: CreateTaskActionPayload;
 };
 
-export type SetRequestStatusPendingActionCreator = (
-  name: SetRequestStatusPendingActionPayload
-) => SetRequestStatusPendingAction;
+export type CreateTaskActionCreator = (task: CreateTaskActionPayload) => CreateTaskAction;
 
-export const SET_REQUEST_STATUS_SUCCESS = 'TASKS/SET_REQUEST_STATUS_SUCCESS';
+export const PUT_TASK_REQUEST = 'TASKS/PUT_TASK_REQUEST';
 
-export type SetRequestStatusSuccessActionPayload = SetRequestStatusPendingActionPayload;
+export type PutTaskActionPayload = Omit<Task, 'id' | 'complete'>;
 
-export type SetRequestStatusSuccessAction = {
-  type: typeof SET_REQUEST_STATUS_SUCCESS;
-  payload: SetRequestStatusPendingActionPayload;
+export type PutTaskAction = {
+  type: typeof PUT_TASK_REQUEST;
+  payload: PutTaskActionPayload;
 };
 
-export type SetRequestStatusSuccessActionCreator = (
-  name: SetRequestStatusSuccessActionPayload
-) => SetRequestStatusSuccessAction;
+export type PutTaskActionCreator = (task: PutTaskActionPayload) => PutTaskAction;
 
-export const SET_REQUEST_STATUS_FAILURE = 'TASKS/SET_REQUEST_STATUS_FAILURE';
+export const DELETE_TASK_REQUEST = 'TASKS/DELETE_TASK_REQUEST';
 
-export type SetRequestStatusFailureActionPayload = SetRequestStatusPendingActionPayload;
-
-export type SetRequestStatusFailureAction = {
-  type: typeof SET_REQUEST_STATUS_FAILURE;
-  payload: SetRequestStatusPendingActionPayload;
+export type DeleteTaskAction = {
+  type: typeof DELETE_TASK_REQUEST;
+  payload: string;
 };
 
-export type SetRequestStatusFailureActionCreator = (
-  name: SetRequestStatusFailureActionPayload
-) => SetRequestStatusFailureAction;
+export type DeleteTaskActionCreator = (id: string) => DeleteTaskAction;
 
-export const SET_REQUEST_STATUS_UNCALLED = 'TASKS/SET_REQUEST_STATUS_UNCALLED';
+export const COMPLETE_TASK_REQUEST = 'TASKS/COMPLETE_TASK_REQUEST';
 
-export type SetRequestStatusUncalledAction = {
-  type: typeof SET_REQUEST_STATUS_UNCALLED;
+export type CompleteTaskAction = {
+  type: typeof COMPLETE_TASK_REQUEST;
+  payload: string;
 };
 
-export type SetRequestStatusUncalledActionCreator = () => SetRequestStatusUncalledAction;
+export type CompleteTaskActionCreator = (id: string) => CompleteTaskAction;
+
+export const SET_GET_REQUEST_STATUS = 'TASKS/SET_GET_REQUEST_STATUS';
+
+export type SetGetRequestStatusAction = {
+  type: typeof SET_GET_REQUEST_STATUS;
+  payload: ResponseStatuses;
+};
+
+export type SetGetRequestStatusActionCreator = (
+  status: ResponseStatuses
+) => SetGetRequestStatusAction;
+
+export const SET_CREATE_REQUEST_STATUS = 'TASKS/SET_CREATE_REQUEST_STATUS';
+
+export type SetCreateRequestStatusAction = {
+  type: typeof SET_CREATE_REQUEST_STATUS;
+  payload: ResponseStatuses;
+};
+
+export type SetCreateRequestStatusActionCreator = (
+  status: ResponseStatuses
+) => SetCreateRequestStatusAction;
+
+export const SET_EDIT_REQUEST_STATUS = 'TASKS/SET_EDIT_REQUEST_STATUS';
+
+export type SetEditRequestStatusAction = {
+  type: typeof SET_EDIT_REQUEST_STATUS;
+  payload: ResponseStatuses;
+};
+
+export type SetEditRequestStatusActionCreator = (
+  status: ResponseStatuses
+) => SetEditRequestStatusAction;
+
+export const SET_DELETE_REQUEST_STATUS = 'TASKS/SET_DELETE_REQUEST_STATUS';
+
+export type SetDeleteRequestStatusAction = {
+  type: typeof SET_DELETE_REQUEST_STATUS;
+  payload: ResponseStatuses;
+};
+
+export type SetDeleteRequestStatusActionCreator = (
+  status: ResponseStatuses
+) => SetDeleteRequestStatusAction;
+
+export const SET_COMPLETE_REQUEST_STATUS = 'TASKS/SET_COMPLETE_REQUEST_STATUS';
+
+export type SetCompleteRequestStatusAction = {
+  type: typeof SET_COMPLETE_REQUEST_STATUS;
+  payload: ResponseStatuses;
+};
+
+export type SetCompleteRequestStatusActionCreator = (
+  status: ResponseStatuses
+) => SetCompleteRequestStatusAction;
 
 export type Actions =
   | SetTasksAction
   | ChangeDateAction
+  | GetTasksAction
   | EditTaskAction
-  | SetRequestStatusPendingAction
-  | SetRequestStatusSuccessAction
-  | SetRequestStatusFailureAction
-  | SetRequestStatusUncalledAction;
+  | CreateTaskAction
+  | DeleteTaskAction
+  | PutTaskAction
+  | SetGetRequestStatusAction
+  | SetCreateRequestStatusAction
+  | SetEditRequestStatusAction
+  | SetDeleteRequestStatusAction
+  | SetCompleteRequestStatusAction;

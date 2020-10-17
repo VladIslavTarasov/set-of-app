@@ -5,7 +5,7 @@ import { MdClear } from 'react-icons/md';
 
 import Button from 'components/Button';
 
-import style from './FiterList.module.scss';
+import style from './FilterList.module.scss';
 
 interface FiterListProps {
   onChange: (e: React.ChangeEvent<{ value: string }>, value: string) => void;

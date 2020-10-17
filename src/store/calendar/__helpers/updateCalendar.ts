@@ -6,7 +6,7 @@ import { getCalendarData } from './getCalendarData';
 export type Mode = 'next' | 'prev' | 'byDate';
 
 export const updateCalendar = (date: string, mode: Mode): Omit<State, 'currentDay'> => {
-  const localMoment = moment(date);
+  const localMoment = moment(new Date(date));
   let newDate;
 
   if (mode === 'next') {

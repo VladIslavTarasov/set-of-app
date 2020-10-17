@@ -1,7 +1,15 @@
-import { ResponseStatuses } from 'types';
+import { ResponseStatuses } from 'store/types';
 
 import tasksReducer, { initial } from '../tasks.reducer';
 import * as tasksTypes from '../tasks.types';
+
+const names = [
+  'getTasksRequestStatus',
+  'createTaskRequestStatus',
+  'editTaskRequestStatus',
+  'deleteTaskRequestStatus',
+  'completeTaskRequestStatus',
+];
 
 describe('tasks.reducer', () => {
   it('SET_TASKS', () => {
@@ -67,61 +75,97 @@ describe('tasks.reducer', () => {
 
   it('SET_REQUEST_STATUS_PENDING', () => {
     const actions = [
-      { type: tasksTypes.SET_REQUEST_STATUS_PENDING, payload: 'delete' } as tasksTypes.Actions,
-      { type: tasksTypes.SET_REQUEST_STATUS_PENDING, payload: 'create' } as tasksTypes.Actions,
-      { type: tasksTypes.SET_REQUEST_STATUS_PENDING, payload: 'edit' } as tasksTypes.Actions,
-      { type: tasksTypes.SET_REQUEST_STATUS_PENDING, payload: 'get' } as tasksTypes.Actions,
-      { type: tasksTypes.SET_REQUEST_STATUS_PENDING, payload: 'complete' } as tasksTypes.Actions,
+      {
+        type: tasksTypes.SET_GET_REQUEST_STATUS,
+        payload: ResponseStatuses.PENDING,
+      } as tasksTypes.Actions,
+      {
+        type: tasksTypes.SET_CREATE_REQUEST_STATUS,
+        payload: ResponseStatuses.PENDING,
+      } as tasksTypes.Actions,
+      {
+        type: tasksTypes.SET_EDIT_REQUEST_STATUS,
+        payload: ResponseStatuses.PENDING,
+      } as tasksTypes.Actions,
+      {
+        type: tasksTypes.SET_DELETE_REQUEST_STATUS,
+        payload: ResponseStatuses.PENDING,
+      } as tasksTypes.Actions,
+      {
+        type: tasksTypes.SET_COMPLETE_REQUEST_STATUS,
+        payload: ResponseStatuses.PENDING,
+      } as tasksTypes.Actions,
     ];
 
-    actions.forEach(action => {
+    actions.forEach((action, i) => {
       expect(tasksReducer(initial, action)).toEqual({
         ...initial,
-        [`${action.payload}TaskRequestStatus`]: ResponseStatuses.PENDING,
+        [names[i]]: action.payload as ResponseStatuses,
       });
     });
   });
 
   it('SET_REQUEST_STATUS_SUCCESS', () => {
     const actions = [
-      { type: tasksTypes.SET_REQUEST_STATUS_SUCCESS, payload: 'delete' } as tasksTypes.Actions,
-      { type: tasksTypes.SET_REQUEST_STATUS_SUCCESS, payload: 'create' } as tasksTypes.Actions,
-      { type: tasksTypes.SET_REQUEST_STATUS_SUCCESS, payload: 'edit' } as tasksTypes.Actions,
-      { type: tasksTypes.SET_REQUEST_STATUS_SUCCESS, payload: 'get' } as tasksTypes.Actions,
-      { type: tasksTypes.SET_REQUEST_STATUS_SUCCESS, payload: 'complete' } as tasksTypes.Actions,
+      {
+        type: tasksTypes.SET_GET_REQUEST_STATUS,
+        payload: ResponseStatuses.SUCCESS,
+      } as tasksTypes.Actions,
+      {
+        type: tasksTypes.SET_CREATE_REQUEST_STATUS,
+        payload: ResponseStatuses.SUCCESS,
+      } as tasksTypes.Actions,
+      {
+        type: tasksTypes.SET_EDIT_REQUEST_STATUS,
+        payload: ResponseStatuses.SUCCESS,
+      } as tasksTypes.Actions,
+      {
+        type: tasksTypes.SET_DELETE_REQUEST_STATUS,
+        payload: ResponseStatuses.SUCCESS,
+      } as tasksTypes.Actions,
+      {
+        type: tasksTypes.SET_COMPLETE_REQUEST_STATUS,
+        payload: ResponseStatuses.SUCCESS,
+      } as tasksTypes.Actions,
     ];
 
-    actions.forEach(action => {
+    actions.forEach((action, i) => {
       expect(tasksReducer(initial, action)).toEqual({
         ...initial,
-        [`${action.payload}TaskRequestStatus`]: ResponseStatuses.SUCCESS,
+        [names[i]]: action.payload as ResponseStatuses,
       });
     });
   });
 
   it('SET_REQUEST_STATUS_FAILURE', () => {
     const actions = [
-      { type: tasksTypes.SET_REQUEST_STATUS_FAILURE, payload: 'delete' } as tasksTypes.Actions,
-      { type: tasksTypes.SET_REQUEST_STATUS_FAILURE, payload: 'create' } as tasksTypes.Actions,
-      { type: tasksTypes.SET_REQUEST_STATUS_FAILURE, payload: 'edit' } as tasksTypes.Actions,
-      { type: tasksTypes.SET_REQUEST_STATUS_FAILURE, payload: 'get' } as tasksTypes.Actions,
-      { type: tasksTypes.SET_REQUEST_STATUS_FAILURE, payload: 'complete' } as tasksTypes.Actions,
+      {
+        type: tasksTypes.SET_GET_REQUEST_STATUS,
+        payload: ResponseStatuses.FAILURE,
+      } as tasksTypes.Actions,
+      {
+        type: tasksTypes.SET_CREATE_REQUEST_STATUS,
+        payload: ResponseStatuses.FAILURE,
+      } as tasksTypes.Actions,
+      {
+        type: tasksTypes.SET_EDIT_REQUEST_STATUS,
+        payload: ResponseStatuses.FAILURE,
+      } as tasksTypes.Actions,
+      {
+        type: tasksTypes.SET_DELETE_REQUEST_STATUS,
+        payload: ResponseStatuses.FAILURE,
+      } as tasksTypes.Actions,
+      {
+        type: tasksTypes.SET_COMPLETE_REQUEST_STATUS,
+        payload: ResponseStatuses.FAILURE,
+      } as tasksTypes.Actions,
     ];
 
-    actions.forEach(action => {
+    actions.forEach((action, i) => {
       expect(tasksReducer(initial, action)).toEqual({
         ...initial,
-        [`${action.payload}TaskRequestStatus`]: ResponseStatuses.FAILURE,
+        [names[i]]: action.payload as ResponseStatuses,
       });
     });
-  });
-
-  it('SET_REQUEST_STATUS_UNCALLED', () => {
-    const action = {
-      type: tasksTypes.SET_REQUEST_STATUS_UNCALLED,
-      payload: 'delete',
-    } as tasksTypes.Actions;
-
-    expect(tasksReducer(initial, action)).toEqual(initial);
   });
 });
