@@ -4,8 +4,8 @@ import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import Loader from 'components/Loader';
-import Tabs from 'components/Tabs';
+import Loader from 'components/Common/Loader';
+import Tabs from 'components/Common/Tabs';
 import FiterList from 'components/Tasks/FilterList';
 import TaskItem from 'components/Tasks/Task';
 import { makeGetMapTasks } from 'store/tasks/tasks.selectors';

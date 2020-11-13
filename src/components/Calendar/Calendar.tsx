@@ -4,10 +4,10 @@ import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { AiFillCaretUp } from 'react-icons/ai';
 
-import Button from 'components/Button';
 import Arrows from 'components/Calendar/Arrows';
 import Header from 'components/Calendar/Header';
 import Month from 'components/Calendar/Month';
+import Button from 'components/Common/Button';
 import { useScrollToElement } from 'hooks';
 import { State } from 'store/calendar/calendar.types';
 

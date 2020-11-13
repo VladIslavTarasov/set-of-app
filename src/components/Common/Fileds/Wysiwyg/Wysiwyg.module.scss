@@ -1,0 +1,13 @@
+.container {
+  margin-bottom: var(--offset-sm);
+}
+
+.label {
+  margin-bottom: var(--offset-xs);
+  font-size: var(--offset-md);
+}
+
+.errorText {
+  margin-bottom: var(--offset-xs);
+  color: var(--red);
+}

@@ -3,7 +3,7 @@ import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdClear } from 'react-icons/md';
 
-import Button from 'components/Button';
+import Button from 'components/Common/Button';
 
 import style from './FilterList.module.scss';
 

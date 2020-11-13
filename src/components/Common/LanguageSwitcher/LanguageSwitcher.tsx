@@ -2,7 +2,7 @@ import React, { memo, useCallback, useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import Select from 'components/Select';
+import { Select } from 'components/Common/Fileds';
 
 const LanguageSwitcher: React.FC = () => {
   const { i18n } = useTranslation();

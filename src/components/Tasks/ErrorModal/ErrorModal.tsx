@@ -3,7 +3,7 @@ import React, { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import Modal from 'components/Modal';
+import Modal from 'components/Common/Modal';
 import { getSlice } from 'store/tasks/tasks.selectors';
 import { ResponseStatuses } from 'store/types';
 

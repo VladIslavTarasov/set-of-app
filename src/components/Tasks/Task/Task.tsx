@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import TaskActions from 'components/Tasks/TaskActions';
 import * as tasksActions from 'store/tasks/tasks.actions';
 import { Task } from 'store/tasks/tasks.types';
+import 'react-quill/dist/quill.snow.css';
 
 import style from './Task.module.scss';
 
@@ -57,12 +58,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
           {complete && <MdDoneAll color="green" fontSize="medium" />}
           <h5 className={style.title}>{title}</h5>
         </div>
-        {description.map((item, i) => (
-          // eslint-disable-next-line
-          <p key={`${item}-${i}`} className={style.paragraph}>
-            {item}
-          </p>
-        ))}
+        <div dangerouslySetInnerHTML={{ __html: description.toString() }} />
       </article>
 
       <TaskActions

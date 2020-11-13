@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { AiOutlineFileAdd } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Button from 'components/Button';
+import Button from 'components/Common/Button';
 import TaskForm from 'components/Tasks/Form';
 import * as tasksActions from 'store/tasks/tasks.actions';
 import { getSlice } from 'store/tasks/tasks.selectors';
@@ -52,6 +52,7 @@ const TodoListFormsContainer: React.FC<TodoListFormsContainerProps> = ({ current
     },
     [dispatch]
   );
+
   const handleEditTask = useCallback(
     values => {
       dispatch(tasksActions.editTaskRequest(values));

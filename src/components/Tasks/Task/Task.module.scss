@@ -11,6 +11,12 @@
   max-height: 300px;
 }
 
+.reset {
+  .ql-toolbar {
+    display: 'none';
+  }
+}
+
 .hide {
   max-height: 50px;
 }

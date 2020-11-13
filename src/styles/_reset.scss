@@ -23,7 +23,6 @@ cite,
 code,
 del,
 dfn,
-em,
 img,
 ins,
 kbd,
@@ -32,7 +31,6 @@ s,
 samp,
 small,
 strike,
-strong,
 sub,
 sup,
 tt,
@@ -87,6 +85,11 @@ video {
   vertical-align: baseline;
 }
 
+ul,
+ol {
+  padding-left: 30px;
+}
+
 article,
 aside,
 details,
@@ -104,12 +107,6 @@ picture {
 
 body {
   line-height: 1;
-}
-
-ol,
-ul {
-  list-style: none;
-  list-style-type: none;
 }
 
 blockquote,
