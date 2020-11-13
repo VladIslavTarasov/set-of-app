@@ -2,7 +2,7 @@ import React, { memo, ButtonHTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
-import Loader from 'components/Loader';
+import Loader from 'components/Common/Loader';
 
 import style from './Button.module.scss';
 

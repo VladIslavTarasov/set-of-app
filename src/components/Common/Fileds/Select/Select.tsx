@@ -1,6 +1,6 @@
 import React, { memo, useState, useCallback, useRef } from 'react';
 
-import Button from 'components/Button';
+import Button from 'components/Common/Button';
 import { useClickOutside } from 'hooks';
 
 import Option from './Option';

@@ -2,7 +2,7 @@ import React, { memo, useMemo, useCallback, useContext } from 'react';
 
 import moment from 'moment';
 
-import Select from 'components/Select';
+import { Select } from 'components/Common/Fileds';
 import { CalendarDispatch } from 'context/calendarDispatch';
 import * as calendarActions from 'store/calendar/calendar.actions';
 
