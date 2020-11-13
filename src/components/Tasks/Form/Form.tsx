@@ -1,13 +1,13 @@
 import React, { useMemo, useRef, memo } from 'react';
 
-import cn from 'classnames';
 import { useFormik } from 'formik';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { AiOutlineClose } from 'react-icons/ai';
 import * as Yup from 'yup';
 
-import Button from 'components/Button';
+import Button from 'components/Common/Button';
+import { Input, Checkbox, Label, Wysiwyg } from 'components/Common/Fileds';
 import { useClickOutside } from 'hooks';
 import { Task } from 'store/tasks/tasks.types';
 
@@ -59,6 +59,11 @@ const Form: React.FC<FormProps> = ({ onSubmit, onClose, mode, task, loading }) =
     onSubmit,
   });
 
+  const handleWysiwygChange = (value: string) => {
+    const target = { value, name: 'description' };
+    formik.handleChange({ target } as React.ChangeEvent<any>);
+  };
+
   useClickOutside(divElement, onClose);
 
   return createPortal(
@@ -69,55 +74,40 @@ const Form: React.FC<FormProps> = ({ onSubmit, onClose, mode, task, loading }) =
         </Button>
 
         <form onSubmit={formik.handleSubmit} className={style.form}>
-          <label htmlFor="title" className={style.label}>
-            <span>{t('formTitle')}</span>
-            <input
+          <Label
+            title={t('formTitle')}
+            name="title"
+            touched={formik.touched.title}
+            error={formik.errors.title}
+          >
+            <Input
               name="title"
               id="title"
               type="text"
               maxLength={40}
+              touched={formik.touched.title}
+              error={formik.errors.title}
               value={formik.values.title}
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              className={cn(style.input, {
-                [style.inputError]: formik.touched.title && formik.errors.title,
-              })}
             />
-            {formik.touched.title && formik.errors.title && (
-              <span className={style.errorText}>{formik.errors.title}</span>
-            )}
-          </label>
+          </Label>
 
-          <label htmlFor="description" className={style.label}>
-            <span>{t('formDescription')}</span>
-            <textarea
-              name="description"
-              id="description"
-              maxLength={250}
-              value={formik.values.description}
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              className={cn(style.textarea, {
-                [style.inputError]: formik.touched.description && formik.errors.description,
-              })}
-            />
-            {formik.touched.description && formik.errors.description && (
-              <span className={style.errorText}>{formik.errors.description}</span>
-            )}
-          </label>
+          <Wysiwyg
+            label={t('formDescription')}
+            value={formik.values.description}
+            onChange={handleWysiwygChange}
+            touched={formik.touched.description}
+            error={formik.errors.description}
+          />
 
-          <label htmlFor="important" className={cn(style.label, style.labelChecbox)}>
-            <input
-              name="important"
-              id="important"
-              type="checkbox"
-              checked={formik.values.important}
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              className={style.checkbox}
-            />
-            <span>{t('formCheckbox')}</span>
-          </label>
+          <Checkbox
+            name="important"
+            title={t('formCheckbox')}
+            checked={formik.values.important}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+          />
 
           <Button type="submit" disabled={loading} loading={loading}>
             {t('buttons:submit')}

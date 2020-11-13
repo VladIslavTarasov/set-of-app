@@ -5,7 +5,7 @@ import { AiTwotoneEdit, AiTwotoneDelete } from 'react-icons/ai';
 import { BiShow, BiHide } from 'react-icons/bi';
 import { MdDone } from 'react-icons/md';
 
-import Button from 'components/Button';
+import Button from 'components/Common/Button';
 
 import style from './TaskActions.module.scss';
 

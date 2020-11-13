@@ -11,10 +11,6 @@
   position: relative;
   border: 1px solid var(--black1);
   text-align: center;
-
-  &:not(:first-child) {
-    border-left: 2px solid var(--black1);
-  }
 }
 
 .dayHead {

@@ -3,7 +3,7 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 
-import Button from 'components/Button';
+import Button from 'components/Common/Button';
 
 import style from './Modal.module.scss';
 

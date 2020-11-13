@@ -17,7 +17,6 @@ module.exports = (req, res) => {
 
     res.json(successResponse(null));
   } catch (e) {
-    console.log(e);
     res.json(failureResponse(null));
   }
 };

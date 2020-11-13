@@ -1,0 +1,15 @@
+.input {
+  padding: var(--offset-xs);
+  border: 1px solid var(--black2);
+  border-radius: var(--radius-sm);
+  font-size: var(--offset-md);
+  transition: var(--transition);
+
+  &:focus {
+    border-color: var(--black);
+  }
+}
+
+.inputError {
+  border-color: var(--red);
+}
