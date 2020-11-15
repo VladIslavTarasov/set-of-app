@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, memo } from 'react';
+import React, { useMemo, useRef, memo, useCallback } from 'react';
 
 import { useFormik } from 'formik';
 import { createPortal } from 'react-dom';
@@ -59,10 +59,10 @@ const Form: React.FC<FormProps> = ({ onSubmit, onClose, mode, task, loading }) =
     onSubmit,
   });
 
-  const handleWysiwygChange = (value: string) => {
+  const handleWysiwygChange = useCallback((value: string) => {
     const target = { value, name: 'description' };
     formik.handleChange({ target } as React.ChangeEvent<any>);
-  };
+  }, [formik.handleChange]);
 
   useClickOutside(divElement, onClose);
 
