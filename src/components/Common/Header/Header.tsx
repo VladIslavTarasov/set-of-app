@@ -1,15 +1,17 @@
 import React, { memo, useRef, useEffect, useCallback, useState } from 'react';
 
 import cn from 'classnames';
-import { useTranslation } from 'react-i18next';
 
 import LanguageSwitcher from 'components/Common/LanguageSwitcher';
 import { debounce } from 'utils/debounce';
 
 import style from './Header.module.scss';
 
-const Header: React.FC = () => {
-  const { t } = useTranslation('todo');
+interface HeaderProps {
+  title: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ title }) => {
   const [showHeader, setShowHeader] = useState<boolean>(true);
   const [transparent, setTransparent] = useState<boolean>(false);
   const prevVal = useRef<number>(0);
@@ -42,7 +44,7 @@ const Header: React.FC = () => {
         })}
       >
         <div className={style.wrapper}>
-          <h1 className={style.title}>{t('title')}</h1>
+          <h1 className={style.title}>{title}</h1>
           <LanguageSwitcher />
         </div>
       </div>

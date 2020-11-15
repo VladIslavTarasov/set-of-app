@@ -13,6 +13,7 @@ const Textarea: React.FC<TextareaProps> = ({ name, touched, error, ...props }) =
   return (
     <textarea
       {...props}
+      id={name}
       name={name}
       className={cn(style.textarea, {
         [style.inputError]: touched && error,

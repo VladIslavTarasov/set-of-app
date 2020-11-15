@@ -1,33 +1,36 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { MdClear } from 'react-icons/md';
 
 import Button from 'components/Common/Button';
+import { Input } from 'components/Common/Fileds';
 
-import style from './FilterList.module.scss';
+import style from './FilterField.module.scss';
 
-interface FiterListProps {
+interface FilterFieldProps {
   onChange: (e: React.ChangeEvent<{ value: string }>, value: string) => void;
   onReset: () => void;
   showButton: boolean;
 }
 
-const FiterList: React.FC<FiterListProps> = ({ onChange, onReset, showButton }) => {
+const FilterField: React.FC<FilterFieldProps> = ({ onChange, onReset, showButton }) => {
   const { t } = useTranslation(['tasks', 'buttons']);
 
-  const handleChange = (e: React.ChangeEvent<{ value: string }>) => {
-    onChange(e, e.target.value);
-  };
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<{ value: string }>) => {
+      onChange(e, e.target.value);
+    },
+    [onChange]
+  );
 
   return (
     <form className={style.form} onReset={onReset}>
-      <input
+      <Input
         maxLength={15}
-        className={style.input}
+        classNames={style.input}
         placeholder={t('filter')}
         type="text"
-        id="filter"
         name="filter"
         onChange={handleChange}
       />
@@ -46,4 +49,4 @@ const FiterList: React.FC<FiterListProps> = ({ onChange, onReset, showButton }) 
   );
 };
 
-export default memo(FiterList);
+export default memo(FilterField);
