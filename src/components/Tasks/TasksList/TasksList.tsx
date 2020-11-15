@@ -6,20 +6,20 @@ import { useSelector } from 'react-redux';
 
 import Loader from 'components/Common/Loader';
 import Tabs from 'components/Common/Tabs';
-import FiterList from 'components/Tasks/FilterList';
-import TaskItem from 'components/Tasks/Task';
+import FilterField from 'components/Tasks/FilterField';
+import TasksItem from 'components/Tasks/TasksItem';
 import { makeGetMapTasks } from 'store/tasks/tasks.selectors';
 import { TasksMap, State } from 'store/tasks/tasks.types';
 import { RootState } from 'store/types';
 import { debounce } from 'utils/debounce';
 
-import style from './List.module.scss';
+import style from './TasksList.module.scss';
 
-interface ListProps {
+interface TasksListProps {
   loading: boolean;
 }
 
-const List: React.FC<ListProps> = ({ loading }) => {
+const TasksList: React.FC<TasksListProps> = ({ loading }) => {
   const { t } = useTranslation(['tabs', 'tasks']);
   const [inputValue, setValue] = useState<string>('');
 
@@ -67,7 +67,15 @@ const List: React.FC<ListProps> = ({ loading }) => {
       <Tabs.Container
         active={t('all')}
         pannel={
-          <FiterList onChange={handleChange} onReset={handleReset} showButton={!!inputValue} />
+          <>
+            {Boolean(all.length) && (
+              <FilterField
+                onChange={handleChange}
+                onReset={handleReset}
+                showButton={!!inputValue}
+              />
+            )}
+          </>
         }
       >
         {tabs.map(({ value, tasks }) => (
@@ -82,7 +90,7 @@ const List: React.FC<ListProps> = ({ loading }) => {
                       [style.important]: task.important,
                     })}
                   >
-                    <TaskItem task={task} />
+                    <TasksItem task={task} />
                   </li>
                 ))}
               </ul>
@@ -96,4 +104,4 @@ const List: React.FC<ListProps> = ({ loading }) => {
   );
 };
 
-export default memo(List);
+export default memo(TasksList);

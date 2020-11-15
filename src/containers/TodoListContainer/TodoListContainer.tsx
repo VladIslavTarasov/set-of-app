@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Calendar from 'components/Calendar';
 import TasksErrorModal from 'components/Tasks/ErrorModal';
-import TasksList from 'components/Tasks/List';
+import TasksList from 'components/Tasks/TasksList';
 import TodoListFormsContainer from 'containers/TodoListFormsContainer';
 import { CalendarDispatch } from 'context/calendarDispatch';
 import caledarReducer, { initial as initialCalendar } from 'store/calendar/calendar.reducer';
@@ -46,7 +46,7 @@ const TodoListContainer: React.FC<TodoListContainerProps> = () => {
         />
       </CalendarDispatch.Provider>
 
-      <TodoListFormsContainer currentDate={calendarState.currentDay} />
+      <TodoListFormsContainer />
       <TasksList loading={loading} />
       <TasksErrorModal />
     </>

@@ -5,18 +5,18 @@ import { ImFire } from 'react-icons/im';
 import { MdDoneAll } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 
-import TaskActions from 'components/Tasks/TaskActions';
+import TaskActions from 'components/Tasks/TasksItem/Actions';
 import * as tasksActions from 'store/tasks/tasks.actions';
 import { Task } from 'store/tasks/tasks.types';
 import 'react-quill/dist/quill.snow.css';
 
-import style from './Task.module.scss';
+import style from './TasksItem.module.scss';
 
-interface TaskItemProps {
+interface TasksItemProps {
   task: Task;
 }
 
-const TaskItem: React.FC<TaskItemProps> = ({
+const TasksItem: React.FC<TasksItemProps> = ({
   task,
   task: { description, title, important, complete },
 }) => {
@@ -74,4 +74,4 @@ const TaskItem: React.FC<TaskItemProps> = ({
   );
 };
 
-export default memo(TaskItem);
+export default memo(TasksItem);

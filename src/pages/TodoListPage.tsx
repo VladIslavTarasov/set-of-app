@@ -1,11 +1,14 @@
 import React from 'react';
 
-import TodoListHeader from 'components/Tasks/Header';
+import { useTranslation } from 'react-i18next';
+
+import Header from 'components/Common/Header';
 import TodoListContainer from 'containers/TodoListContainer';
 import MainLayout from 'layouts/Main';
 
 const TodoListPage: React.FC = () => {
-  return <MainLayout header={<TodoListHeader />} main={<TodoListContainer />} />;
+  const { t } = useTranslation('todo');
+  return <MainLayout header={<Header title={t('title')} />} main={<TodoListContainer />} />;
 };
 
 export default TodoListPage;

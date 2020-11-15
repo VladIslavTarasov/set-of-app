@@ -7,9 +7,9 @@ import { MdDone } from 'react-icons/md';
 
 import Button from 'components/Common/Button';
 
-import style from './TaskActions.module.scss';
+import style from './Actions.module.scss';
 
-interface TasksActionsProps {
+interface ActionsProps {
   longTask: boolean;
   showFullTask: boolean;
   complete: boolean;
@@ -19,7 +19,7 @@ interface TasksActionsProps {
   onDeleteTask: () => void;
 }
 
-const TasksActions: React.FC<TasksActionsProps> = ({
+const Actions: React.FC<ActionsProps> = ({
   longTask,
   showFullTask,
   complete,
@@ -62,4 +62,4 @@ const TasksActions: React.FC<TasksActionsProps> = ({
   );
 };
 
-export default memo(TasksActions);
+export default memo(Actions);

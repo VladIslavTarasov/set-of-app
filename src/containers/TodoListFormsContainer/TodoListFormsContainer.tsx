@@ -13,9 +13,7 @@ import { ResponseStatuses } from 'store/types';
 
 import style from './TodoListFormsContainer.module.scss';
 
-interface TodoListFormsContainerProps {
-  currentDate: string;
-}
+interface TodoListFormsContainerProps {}
 
 enum ActiveForm {
   CREATE,
@@ -23,7 +21,7 @@ enum ActiveForm {
   NULL,
 }
 
-const TodoListFormsContainer: React.FC<TodoListFormsContainerProps> = ({ currentDate }) => {
+const TodoListFormsContainer: React.FC<TodoListFormsContainerProps> = () => {
   const { t } = useTranslation('todo');
   const [activeForm, setActiveForm] = useState<ActiveForm>(ActiveForm.NULL);
   const dispatch = useDispatch();
@@ -62,8 +60,8 @@ const TodoListFormsContainer: React.FC<TodoListFormsContainerProps> = ({ current
   );
 
   const isDisabled = useMemo(
-    () => moment(new Date(currentDate)).unix() > moment(new Date(choosenDate)).unix(),
-    [choosenDate, currentDate]
+    () => moment().subtract(1, 'days').unix() > moment(new Date(choosenDate)).unix(),
+    [choosenDate]
   );
 
   const isSubmitingForm = useMemo(
