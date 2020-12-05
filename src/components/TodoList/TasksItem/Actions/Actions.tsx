@@ -9,8 +9,9 @@ import { useDispatch } from 'react-redux';
 import Button from 'components/Common/Button';
 import * as tasksActions from 'store/tasks/tasks.actions';
 import { Task } from 'store/tasks/tasks.types';
+import { useTheme } from 'styles/theme';
 
-import style from './Actions.module.scss';
+import { useStyles } from './Actions.styles';
 
 interface ActionsProps {
   longTask: boolean;
@@ -21,6 +22,9 @@ interface ActionsProps {
 }
 
 const Actions: React.FC<ActionsProps> = ({ longTask, showFullTask, complete, task, onToggle }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
+
   const { t } = useTranslation('buttons');
   const dispatch = useDispatch();
 
@@ -38,7 +42,7 @@ const Actions: React.FC<ActionsProps> = ({ longTask, showFullTask, complete, tas
 
   return (
     <>
-      <div className={style.actions}>
+      <div className={classes.actions}>
         {longTask && (
           <Button
             type="button"

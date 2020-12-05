@@ -2,7 +2,9 @@ import React, { memo } from 'react';
 
 import cn from 'classnames';
 
-import style from './Content.module.scss';
+import { useTheme } from 'styles/theme';
+
+import { useStyles } from './Content.styles';
 
 export interface TabsContentProps {
   value: string;
@@ -10,7 +12,10 @@ export interface TabsContentProps {
 }
 
 const TabsContent: React.FC<TabsContentProps> = ({ children, classNames }) => {
-  return <div className={cn(style.wrapper, classNames)}>{children}</div>;
+  const theme = useTheme();
+  const classes = useStyles({ theme });
+
+  return <div className={cn(classes.wrapper, classNames)}>{children}</div>;
 };
 
 export default memo(TabsContent);

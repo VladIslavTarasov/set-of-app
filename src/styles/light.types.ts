@@ -17,20 +17,21 @@ export interface Light {
       main: string;
       dark: string;
     };
-    white: string;
-    red: string;
-    red2: string;
-    gray: string;
-    gray1: string;
-    black: string;
-    black05: string;
-    black1: string;
-    black2: string;
-    black3: string;
-    green1: string;
-    green2: string;
-    green3: string;
-    green4: string;
+    success: {
+      light: string;
+      main: string;
+      dark: string;
+    };
+    error: {
+      light: string;
+      main: string;
+      dark: string;
+    };
+    info: {
+      light: string;
+      main: string;
+      dark: string;
+    };
   };
   borderRadius: {
     xs: number;

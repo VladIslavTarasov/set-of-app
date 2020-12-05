@@ -5,16 +5,20 @@ import { MdClear } from 'react-icons/md';
 
 import Button from 'components/Common/Button';
 import { Input } from 'components/Common/Fileds';
+import { useTheme } from 'styles/theme';
 
-import style from './FilterField.module.scss';
+import { useStyles } from './FilterField.styles';
 
 interface FilterFieldProps {
   onChange: (e: React.ChangeEvent<{ value: string }>, value: string) => void;
   onReset: () => void;
   showButton: boolean;
+  disabled?: boolean;
 }
 
-const FilterField: React.FC<FilterFieldProps> = ({ onChange, onReset, showButton }) => {
+const FilterField: React.FC<FilterFieldProps> = ({ onChange, onReset, showButton, disabled }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   const { t } = useTranslation(['tasks', 'buttons']);
 
   const handleChange = useCallback(
@@ -25,10 +29,11 @@ const FilterField: React.FC<FilterFieldProps> = ({ onChange, onReset, showButton
   );
 
   return (
-    <form className={style.form} onReset={onReset}>
+    <form className={classes.form} onReset={onReset}>
       <Input
         maxLength={15}
-        classNames={style.input}
+        classNames={classes.input}
+        disabled={!!disabled}
         placeholder={t('filter')}
         type="text"
         name="filter"
@@ -40,7 +45,7 @@ const FilterField: React.FC<FilterFieldProps> = ({ onChange, onReset, showButton
           mode="icon"
           size="sm"
           title={t('buttons:reset')}
-          className={style.reset}
+          className={classes.reset}
         >
           <MdClear />
         </Button>

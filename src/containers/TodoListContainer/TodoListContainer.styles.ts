@@ -11,7 +11,6 @@ export const useStyles = createUseStyles(
     todolist: ({ theme }: { theme: Light }) => ({
       flexGrow: 1,
       marginLeft: theme.offsets.sm,
-      backgroundColor: theme.palette.primary.light,
     }),
   },
   { name: 'TodoListContainer' }

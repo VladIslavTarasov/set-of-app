@@ -10,8 +10,9 @@ import Button from 'components/Common/Button';
 import { Input, Checkbox, Label, Wysiwyg } from 'components/Common/Fileds';
 import { useClickOutside } from 'hooks';
 import { Task } from 'store/tasks/tasks.types';
+import { useTheme } from 'styles/theme';
 
-import style from './Form.module.scss';
+import { useStyles } from './Form.styles';
 
 export interface TaskFormFields {
   title: string;
@@ -46,6 +47,9 @@ const makeInitialValues = (mode: 'create' | 'edit', task?: Task | null) => {
 };
 
 const Form: React.FC<FormProps> = ({ onSubmit, onClose, mode, task, loading }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
+
   const { t } = useTranslation(['tasks', 'buttons', 'errorMessages']);
   const divElement = useRef<HTMLDivElement>(null);
 
@@ -75,13 +79,13 @@ const Form: React.FC<FormProps> = ({ onSubmit, onClose, mode, task, loading }) =
   useClickOutside(divElement, onClose);
 
   return createPortal(
-    <section className={style.container}>
-      <div ref={divElement} className={style.formWrapper}>
-        <Button onClick={onClose} type="button" className={style.close} mode="icon">
+    <section className={classes.container}>
+      <div ref={divElement} className={classes.formWrapper}>
+        <Button onClick={onClose} type="button" className={classes.close} mode="icon">
           <AiOutlineClose />
         </Button>
 
-        <form onSubmit={formik.handleSubmit} className={style.form}>
+        <form onSubmit={formik.handleSubmit} className={classes.form}>
           <Label
             title={t('formTitle')}
             name="title"

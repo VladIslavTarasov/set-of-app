@@ -6,9 +6,10 @@ import { MdDoneAll } from 'react-icons/md';
 
 import TaskActions from 'components/TodoList/TasksItem/Actions';
 import { Task } from 'store/tasks/tasks.types';
+import { useTheme } from 'styles/theme';
 import 'react-quill/dist/quill.snow.css';
 
-import style from './TasksItem.module.scss';
+import { useStyles } from './TasksItem.styles';
 
 interface TasksItemProps {
   task: Task;
@@ -18,6 +19,9 @@ const TasksItem: React.FC<TasksItemProps> = ({
   task,
   task: { description, title, important, complete },
 }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
+
   const [longTask, setLongTask] = useState<boolean>(false);
   const [showFullTask, setShowFullTask] = useState<boolean>(false);
 
@@ -32,16 +36,16 @@ const TasksItem: React.FC<TasksItemProps> = ({
   return (
     <>
       <article
-        className={cn(style.content, {
-          [style.show]: longTask && showFullTask,
-          [style.hide]: longTask && !showFullTask,
+        className={cn(classes.content, {
+          [classes.show]: longTask && showFullTask,
+          [classes.hide]: longTask && !showFullTask,
         })}
         ref={measuredRef}
       >
-        <div className={style.titleWrapper}>
+        <div className={classes.titleWrapper}>
           {important && <ImFire color="red" fontSize="medium" />}
           {complete && <MdDoneAll color="green" fontSize="medium" />}
-          <h5 className={style.title}>{title}</h5>
+          <h5 className={classes.title}>{title}</h5>
         </div>
         <div dangerouslySetInnerHTML={{ __html: description.toString() }} />
       </article>

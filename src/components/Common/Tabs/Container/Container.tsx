@@ -2,9 +2,11 @@ import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 
 import cn from 'classnames';
 
+import { useTheme } from 'styles/theme';
+
 import Button from '../Button';
 import { TabsContentProps } from '../Content/Content';
-import style from './Container.module.scss';
+import { useStyles } from './Container.styles';
 
 export interface TabsContainerProps {
   active: string;
@@ -25,6 +27,8 @@ const TabsContainer: React.FC<TabsContainerProps> = ({
   onChange,
   classNames,
 }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   const [activeValue, setActiveValue] = useState<string>(active);
 
   useEffect(() => {
@@ -54,8 +58,8 @@ const TabsContainer: React.FC<TabsContainerProps> = ({
   }, [children]);
 
   return (
-    <div className={cn(style.container, classNames?.container)}>
-      <div className={style.tablist} role="tablist">
+    <div className={cn(classes.container, classNames?.container)}>
+      <div className={classes.tablist} role="tablist">
         {tabs.map(({ value }) => (
           <Button
             key={value}

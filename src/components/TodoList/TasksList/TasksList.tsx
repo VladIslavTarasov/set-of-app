@@ -11,15 +11,19 @@ import TasksItem from 'components/TodoList/TasksItem';
 import { makeGetMapTasks } from 'store/tasks/tasks.selectors';
 import { TasksMap, State } from 'store/tasks/tasks.types';
 import { RootState } from 'store/types';
+import { useTheme } from 'styles/theme';
 import { debounce } from 'utils/debounce';
 
-import style from './TasksList.module.scss';
+import { useStyles } from './TasksList.styles';
 
 interface TasksListProps {
   loading: boolean;
 }
 
 const TasksList: React.FC<TasksListProps> = ({ loading }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
+
   const { t } = useTranslation(['tabs', 'tasks']);
   const [inputValue, setValue] = useState<string>('');
 
@@ -63,31 +67,23 @@ const TasksList: React.FC<TasksListProps> = ({ loading }) => {
 
   return (
     <>
-      {loading && <Loader size="lg" mode="circle" classNames={style.tasksLoading} />}
+      {loading && <Loader size="lg" mode="circle" classNames={classes.tasksLoading} />}
       <Tabs.Container
         active={t('all')}
         pannel={
-          <>
-            {Boolean(all.length) && (
-              <FilterField
-                onChange={handleChange}
-                onReset={handleReset}
-                showButton={!!inputValue}
-              />
-            )}
-          </>
+          <FilterField onChange={handleChange} onReset={handleReset} showButton={!!inputValue} />
         }
       >
         {tabs.map(({ value, tasks }) => (
           <Tabs.Content key={value} value={value}>
             {tasks?.length ? (
-              <ul className={style.ul}>
+              <ul className={classes.ul}>
                 {tasks.map(task => (
                   <li
                     key={task.id}
-                    className={cn(style.li, {
-                      [style.complete]: task.complete,
-                      [style.important]: task.important,
+                    className={cn(classes.li, {
+                      [classes.complete]: task.complete,
+                      [classes.important]: task.important,
                     })}
                   >
                     <TasksItem task={task} />
