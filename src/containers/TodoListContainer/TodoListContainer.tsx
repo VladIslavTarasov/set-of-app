@@ -1,23 +1,28 @@
-import React, { useReducer, useCallback, useMemo, useEffect } from 'react';
+import React, { useCallback, useMemo, useEffect, useRef } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
 import Calendar from 'components/Calendar';
-import TasksErrorModal from 'components/Tasks/ErrorModal';
-import TasksList from 'components/Tasks/TasksList';
+import ScrollButton from 'components/Common/ScrollButton';
+import TasksErrorModal from 'components/TodoList/ErrorModal';
+import TasksList from 'components/TodoList/TasksList';
 import TodoListFormsContainer from 'containers/TodoListFormsContainer';
-import { CalendarDispatch } from 'context/calendarDispatch';
-import caledarReducer, { initial as initialCalendar } from 'store/calendar/calendar.reducer';
 import * as tasksActions from 'store/tasks/tasks.actions';
 import { getSlice } from 'store/tasks/tasks.selectors';
 import { ResponseStatuses } from 'store/types';
+import { useTheme } from 'styles/theme';
+
+import { useStyles } from './TodoListContainer.styles';
 
 interface TodoListContainerProps {}
 
 const TodoListContainer: React.FC<TodoListContainerProps> = () => {
-  const [calendarState, calendarDispatch] = useReducer(caledarReducer, initialCalendar);
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   const { deleteTaskRequestStatus, getTasksRequestStatus, datesWithTasks } = useSelector(getSlice);
   const dispatch = useDispatch();
+
+  const calendar = useRef<HTMLDivElement>(null);
 
   const handleChangeDate = useCallback(
     (date: string) => {
@@ -37,18 +42,24 @@ const TodoListContainer: React.FC<TodoListContainerProps> = () => {
 
   return (
     <>
-      <CalendarDispatch.Provider value={calendarDispatch}>
+      <TodoListFormsContainer />
+
+      <section className={classes.container}>
         <Calendar
-          state={calendarState}
+          ref={calendar}
+          maxWidth={500}
           dates={datesWithTasks}
           loading={loading}
-          onChangeDate={handleChangeDate}
+          onChange={handleChangeDate}
         />
-      </CalendarDispatch.Provider>
 
-      <TodoListFormsContainer />
-      <TasksList loading={loading} />
+        <div className={classes.todolist}>
+          <TasksList loading={loading} />
+        </div>
+      </section>
+
       <TasksErrorModal />
+      <ScrollButton element={calendar} />
     </>
   );
 };

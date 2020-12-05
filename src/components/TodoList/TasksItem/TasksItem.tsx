@@ -3,10 +3,8 @@ import React, { memo, useCallback, useState } from 'react';
 import cn from 'classnames';
 import { ImFire } from 'react-icons/im';
 import { MdDoneAll } from 'react-icons/md';
-import { useDispatch } from 'react-redux';
 
-import TaskActions from 'components/Tasks/TasksItem/Actions';
-import * as tasksActions from 'store/tasks/tasks.actions';
+import TaskActions from 'components/TodoList/TasksItem/Actions';
 import { Task } from 'store/tasks/tasks.types';
 import 'react-quill/dist/quill.snow.css';
 
@@ -20,29 +18,16 @@ const TasksItem: React.FC<TasksItemProps> = ({
   task,
   task: { description, title, important, complete },
 }) => {
-  const dispatch = useDispatch();
   const [longTask, setLongTask] = useState<boolean>(false);
   const [showFullTask, setShowFullTask] = useState<boolean>(false);
 
   const measuredRef = useCallback((node: HTMLElement) => {
-    if (node) setLongTask(node.offsetHeight > 50);
+    setLongTask(node?.offsetHeight > 60);
   }, []);
 
   const toogle = useCallback(() => {
     setShowFullTask(prev => !prev);
   }, []);
-
-  const handleEditTask = useCallback(() => {
-    dispatch(tasksActions.setEditTask(task));
-  }, [dispatch, task]);
-
-  const handleDeleteTask = useCallback(() => {
-    dispatch(tasksActions.deleteTaskRequest(task.id));
-  }, [dispatch, task.id]);
-
-  const handleCompleteTask = useCallback(() => {
-    dispatch(tasksActions.completeTaskRequest(task.id));
-  }, [dispatch, task.id]);
 
   return (
     <>
@@ -66,9 +51,7 @@ const TasksItem: React.FC<TasksItemProps> = ({
         showFullTask={showFullTask}
         complete={complete}
         onToggle={toogle}
-        onEditTask={handleEditTask}
-        onDeleteTask={handleDeleteTask}
-        onCompleteTask={handleCompleteTask}
+        task={task}
       />
     </>
   );

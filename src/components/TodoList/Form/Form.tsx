@@ -33,6 +33,18 @@ export interface FormProps {
   onClose: () => void;
 }
 
+const makeInitialValues = (mode: 'create' | 'edit', task?: Task | null) => {
+  if (task && mode === 'edit') {
+    return {
+      title: task.title,
+      description: task.description.toString(),
+      important: task.important,
+    };
+  }
+
+  return initial;
+};
+
 const Form: React.FC<FormProps> = ({ onSubmit, onClose, mode, task, loading }) => {
   const { t } = useTranslation(['tasks', 'buttons', 'errorMessages']);
   const divElement = useRef<HTMLDivElement>(null);
@@ -47,22 +59,18 @@ const Form: React.FC<FormProps> = ({ onSubmit, onClose, mode, task, loading }) =
   );
 
   const formik = useFormik<TaskFormFields>({
-    initialValues:
-      mode === 'edit' && task
-        ? {
-            title: task.title,
-            description: task.description.reduce((a, b, i) => `${a}${i ? '\n' : ''}${b}`, ''),
-            important: task.important,
-          }
-        : initial,
+    initialValues: makeInitialValues(mode, task),
     validationSchema,
     onSubmit,
   });
 
-  const handleWysiwygChange = useCallback((value: string) => {
-    const target = { value, name: 'description' };
-    formik.handleChange({ target } as React.ChangeEvent<any>);
-  }, [formik.handleChange]);
+  const handleWysiwygChange = useCallback(
+    (value: string) => {
+      const target = { value, name: 'description' };
+      formik.handleChange({ target } as React.ChangeEvent<HTMLInputElement>);
+    },
+    [formik]
+  );
 
   useClickOutside(divElement, onClose);
 

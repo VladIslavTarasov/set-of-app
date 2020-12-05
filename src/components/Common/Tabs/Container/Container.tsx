@@ -33,7 +33,7 @@ const TabsContainer: React.FC<TabsContainerProps> = ({
 
   const handleClick = useCallback(
     (e: React.MouseEvent, value: string) => {
-      if (onChange) onChange(e, value);
+      onChange?.(e, value);
 
       setActiveValue(value);
     },

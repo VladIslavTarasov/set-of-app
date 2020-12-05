@@ -1,17 +1,22 @@
 import React, { memo, useContext, useCallback } from 'react';
 
+import cn from 'classnames';
 import { AiOutlineDoubleRight, AiOutlineDoubleLeft } from 'react-icons/ai';
 
-import { CalendarDispatch } from 'context/calendarDispatch';
 import * as actions from 'store/calendar/calendar.actions';
+import { useTheme } from 'styles/theme';
 
-import style from './Arrows.module.scss';
+import { CalendarDispatch } from '../Calendar';
+import { useStyles } from './Arrows.styles';
 
 interface ArrowsProps {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
+  className?: string;
 }
 
-const Arrows: React.FC<ArrowsProps> = props => {
+const Arrows: React.FC<ArrowsProps> = ({ className, children }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   const dispatch = useContext(CalendarDispatch);
 
   const handleClickNext = useCallback(() => {
@@ -23,12 +28,12 @@ const Arrows: React.FC<ArrowsProps> = props => {
   }, [dispatch]);
 
   return (
-    <div className={style.wrapper}>
-      <button type="button" className={style.arrow} onClick={handleClickPrev}>
+    <div className={cn(classes.wrapper, className)}>
+      <button type="button" className={classes.arrow} onClick={handleClickPrev}>
         <AiOutlineDoubleLeft />
       </button>
-      {props.children}
-      <button type="button" className={style.arrow} onClick={handleClickNext}>
+      {children}
+      <button type="button" className={classes.arrow} onClick={handleClickNext}>
         <AiOutlineDoubleRight />
       </button>
     </div>

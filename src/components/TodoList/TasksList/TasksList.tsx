@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 
 import Loader from 'components/Common/Loader';
 import Tabs from 'components/Common/Tabs';
-import FilterField from 'components/Tasks/FilterField';
-import TasksItem from 'components/Tasks/TasksItem';
+import FilterField from 'components/TodoList/FilterField';
+import TasksItem from 'components/TodoList/TasksItem';
 import { makeGetMapTasks } from 'store/tasks/tasks.selectors';
 import { TasksMap, State } from 'store/tasks/tasks.types';
 import { RootState } from 'store/types';

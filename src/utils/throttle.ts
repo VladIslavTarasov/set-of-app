@@ -1,5 +1,6 @@
-// eslint-disable-next-line
-type Throttle = (func: Function, ms: number) => (...args: any[]) => void;
+interface Throttle {
+  <T extends unknown>(func: Function, ms: number): (...args: T[]) => void;
+}
 
 export const throttle: Throttle = (func, ms) => {
   let isThrottled = false;
