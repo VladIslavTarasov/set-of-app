@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 
 import AppRouter from 'router/AppRouter';
 import store from 'store';
+import Theme from 'theme/Theme';
 
 import 'locales/init';
 
@@ -13,7 +14,9 @@ const App: React.FC = () => {
   return (
     <I18nextProvider i18n={i18n}>
       <Provider store={store}>
-        <AppRouter />
+        <Theme>
+          <AppRouter />
+        </Theme>
       </Provider>
     </I18nextProvider>
   );

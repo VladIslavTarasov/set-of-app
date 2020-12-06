@@ -26,6 +26,7 @@ export default {
     formDescription: 'Описание',
     empty: 'Нет заданий',
     filter: 'Фильтровать по названию',
+    changeColor: 'Изменить цвет на {{name}}',
   },
   errorMessages: {
     required: 'Обязательное поле',

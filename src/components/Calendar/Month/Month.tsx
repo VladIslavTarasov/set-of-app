@@ -1,12 +1,13 @@
-import React, { memo, useState, useCallback } from 'react';
+import React, { memo, useState, useMemo, useCallback } from 'react';
 
 import cn from 'classnames';
 import moment from 'moment';
 
-import DateButton from 'components/Calendar/Day';
+import Day from 'components/Calendar/Day';
 import { CalendarDay } from 'store/calendar/calendar.types';
+import { useTheme } from 'theme/theme';
 
-import style from './Month.module.scss';
+import { useStyles } from './Month.styles';
 
 interface BodyProps {
   onChangeDate: (date: string) => void;
@@ -18,7 +19,9 @@ interface BodyProps {
 
 const weekDays = moment.weekdaysShort();
 
-const Table: React.FC<BodyProps> = ({ dates, calendar, currentDate, loading, onChangeDate }) => {
+const Month: React.FC<BodyProps> = ({ dates, calendar, currentDate, loading, onChangeDate }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   const [choosenDate, setChoosenDate] = useState<string>(currentDate);
 
   const handleChangeDate = useCallback(
@@ -30,41 +33,47 @@ const Table: React.FC<BodyProps> = ({ dates, calendar, currentDate, loading, onC
     [onChangeDate]
   );
 
+  const thead = useMemo(
+    () => (
+      <div className={classes.row} role="row">
+        {weekDays.map(day => (
+          <div key={day} role="cell" className={classes.cell}>
+            {day}
+          </div>
+        ))}
+      </div>
+    ),
+    [classes]
+  );
+
   return (
-    <table className={style.table}>
-      <thead>
-        <tr>
-          {weekDays.map(day => (
-            <th key={day} className={style.dayHead}>
-              {day}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
+    <div role="table" className={classes.table}>
+      <div role="rowgroup">
+        {thead}
         {calendar.map((weeks, i) => (
           // eslint-disable-next-line
-          <tr key={i} className={style.tr}>
+          <div role="row" className={classes.row} key={i}>
             {weeks.map(day => (
-              <td
+              <div
                 key={day.date}
-                className={cn(style.day, {
-                  [style.hasTask]: !loading && dates?.includes(day.date),
+                role="cell"
+                className={cn(classes.cell, {
+                  [classes.hasEvent]: !loading && dates?.includes(day.date),
                 })}
               >
-                <DateButton
+                <Day
                   loading={loading}
                   onChangeDate={handleChangeDate}
-                  choosenDate={choosenDate}
+                  isChoosenDate={choosenDate === day.date}
                   {...day}
                 />
-              </td>
+              </div>
             ))}
-          </tr>
+          </div>
         ))}
-      </tbody>
-    </table>
+      </div>
+    </div>
   );
 };
 
-export default memo(Table);
+export default memo(Month);

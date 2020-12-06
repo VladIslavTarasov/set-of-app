@@ -6,12 +6,10 @@ import { AiOutlineFileAdd } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Button from 'components/Common/Button';
-import TaskForm from 'components/Tasks/Form';
+import TaskForm from 'components/TodoList/Form';
 import * as tasksActions from 'store/tasks/tasks.actions';
 import { getSlice } from 'store/tasks/tasks.selectors';
 import { ResponseStatuses } from 'store/types';
-
-import style from './TodoListFormsContainer.module.scss';
 
 interface TodoListFormsContainerProps {}
 
@@ -36,8 +34,9 @@ const TodoListFormsContainer: React.FC<TodoListFormsContainerProps> = () => {
   }, [editTask]);
 
   const handleCloseForm = useCallback(() => {
+    dispatch(tasksActions.setEditTask(null));
     setActiveForm(ActiveForm.NULL);
-  }, []);
+  }, [dispatch]);
 
   const handleOpenForm = useCallback(() => {
     setActiveForm(ActiveForm.CREATE);
@@ -74,7 +73,6 @@ const TodoListFormsContainer: React.FC<TodoListFormsContainerProps> = () => {
       <Button
         disabled={isDisabled}
         onClick={handleOpenForm}
-        className={style.openForm}
         aria-label={t('create')}
         title={t('create')}
         type="button"

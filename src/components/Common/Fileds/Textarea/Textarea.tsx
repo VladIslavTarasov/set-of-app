@@ -2,7 +2,9 @@ import React, { memo } from 'react';
 
 import cn from 'classnames';
 
-import style from './Textarea.module.scss';
+import { useTheme } from 'theme/theme';
+
+import { useStyles } from './Textarea.styles';
 
 interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   touched?: boolean;
@@ -10,13 +12,15 @@ interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement
 }
 
 const Textarea: React.FC<TextareaProps> = ({ name, touched, error, ...props }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   return (
     <textarea
       {...props}
       id={name}
       name={name}
-      className={cn(style.textarea, {
-        [style.inputError]: touched && error,
+      className={cn(classes.textarea, {
+        [classes.inputError]: touched && error,
       })}
     />
   );

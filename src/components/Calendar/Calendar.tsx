@@ -1,57 +1,45 @@
-import React, { memo, useRef } from 'react';
+import React, { memo, createContext, useReducer, forwardRef } from 'react';
 
-import cn from 'classnames';
-import { useTranslation } from 'react-i18next';
-import { AiFillCaretUp } from 'react-icons/ai';
-
-import Arrows from 'components/Calendar/Arrows';
 import Header from 'components/Calendar/Header';
 import Month from 'components/Calendar/Month';
-import Button from 'components/Common/Button';
-import { useScrollToElement } from 'hooks';
-import { State } from 'store/calendar/calendar.types';
+import caledarReducer, { initial as initialCalendar } from 'store/calendar/calendar.reducer';
+import * as calendarTypes from 'store/calendar/calendar.types';
+import { useTheme } from 'theme/theme';
 
-import style from './Calendar.module.scss';
+import { useStyles } from './Calendar.styles';
 
 interface CalendarProps {
-  state: State;
   dates: string[] | null;
   loading?: boolean;
-  onChangeDate: (date: string) => void;
+  maxWidth?: number;
+  withScroll?: boolean;
+  onChange: (date: string) => void;
 }
 
-const Calendar: React.FC<CalendarProps> = ({ state, loading, dates, onChangeDate }) => {
-  const { t } = useTranslation('buttons');
-  const calendar = useRef<HTMLDivElement>(null);
-  const [show, handleScroll] = useScrollToElement(calendar);
+export const CalendarDispatch = createContext<React.Dispatch<calendarTypes.Actions>>(null!);
 
-  return (
-    <>
-      <Button
-        onClick={handleScroll}
-        className={cn(style.backToStart, { [style.show]: show })}
-        size="xl"
-        role="scrollbar"
-        aria-label={t('scrollToTop')}
-        title={t('scrollToTop')}
-        mode="icon"
-      >
-        <AiFillCaretUp />
-      </Button>
-      <div ref={calendar}>
-        <Header currentMonth={state.currentMonth[0]} />
-        <Arrows>
+const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
+  ({ loading, dates, onChange, maxWidth }, ref) => {
+    const theme = useTheme();
+    const classes = useStyles({ maxWidth, theme });
+
+    const [state, dispatch] = useReducer(caledarReducer, initialCalendar);
+
+    return (
+      <CalendarDispatch.Provider value={dispatch}>
+        <div className={classes.calendar} ref={ref}>
+          <Header currentDate={state.currentDay} currentMonth={state.currentMonth[0]} />
           <Month
             currentDate={state.currentDay}
             calendar={state.calendar}
             loading={loading}
             dates={dates}
-            onChangeDate={onChangeDate}
+            onChangeDate={onChange}
           />
-        </Arrows>
-      </div>
-    </>
-  );
-};
+        </div>
+      </CalendarDispatch.Provider>
+    );
+  }
+);
 
 export default memo(Calendar);

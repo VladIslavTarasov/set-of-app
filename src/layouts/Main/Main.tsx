@@ -1,6 +1,8 @@
 import React from 'react';
 
-import style from './Main.module.scss';
+import { useTheme } from 'theme/theme';
+
+import { useStyles } from './Main.styles';
 
 interface Main {
   header?: React.ReactNode;
@@ -10,11 +12,13 @@ interface Main {
 }
 
 const Main: React.FC<Main> = ({ header, main, footer }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   return (
-    <div className={style.container}>
-      {header && <header className={style.header}>{header}</header>}
-      <main className={style.main}>{main}</main>
-      {footer && <footer className={style.footer}>{footer}</footer>}
+    <div className={classes.container}>
+      {header && <header className={classes.header}>{header}</header>}
+      <main className={classes.main}>{main}</main>
+      {footer && <footer className={classes.footer}>{footer}</footer>}
     </div>
   );
 };
