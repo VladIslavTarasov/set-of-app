@@ -10,7 +10,7 @@ import TodoListFormsContainer from 'containers/TodoListFormsContainer';
 import * as tasksActions from 'store/tasks/tasks.actions';
 import { getSlice } from 'store/tasks/tasks.selectors';
 import { ResponseStatuses } from 'store/types';
-import { useTheme } from 'styles/theme';
+import { useTheme } from 'theme/theme';
 
 import { useStyles } from './TodoListContainer.styles';
 
@@ -42,7 +42,9 @@ const TodoListContainer: React.FC<TodoListContainerProps> = () => {
 
   return (
     <>
-      <TodoListFormsContainer />
+      <div className={classes.formWrapper}>
+        <TodoListFormsContainer />
+      </div>
 
       <section className={classes.container}>
         <Calendar

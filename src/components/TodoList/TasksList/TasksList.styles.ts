@@ -1,10 +1,10 @@
 import { createUseStyles } from 'react-jss';
 
-import { Light } from 'styles/light.types';
+import { Theme } from 'theme/types/theme.types';
 
 export const useStyles = createUseStyles(
   {
-    ul: ({ theme }: { theme: Light }) => ({
+    ul: ({ theme }: { theme: Theme }) => ({
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
@@ -14,7 +14,7 @@ export const useStyles = createUseStyles(
       marginTop: theme.offsets.xs,
       marginRight: -8,
     }),
-    li: ({ theme }: { theme: Light }) => ({
+    li: ({ theme }: { theme: Theme }) => ({
       display: 'flex',
       boxSizing: 'border-box',
       flex: '1 1 100%',
@@ -33,15 +33,15 @@ export const useStyles = createUseStyles(
         boxShadow: theme.shadows.sm,
       },
     }),
-    complete: ({ theme }: { theme: Light }) => ({
+    complete: ({ theme }: { theme: Theme }) => ({
       backgroundColor: theme.palette.success.light,
       border: `2px solid ${theme.palette.success.main}`,
     }),
-    important: ({ theme }: { theme: Light }) => ({
+    important: ({ theme }: { theme: Theme }) => ({
       backgroundColor: theme.palette.error.light,
       border: `2px solid ${theme.palette.error.main}`,
     }),
-    tasksLoading: ({ theme }: { theme: Light }) => ({
+    tasksLoading: ({ theme }: { theme: Theme }) => ({
       position: 'fixed',
       zIndex: theme.zIndex.modal,
       top: '0',

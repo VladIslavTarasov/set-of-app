@@ -2,7 +2,9 @@ import React, { memo } from 'react';
 
 import cn from 'classnames';
 
-import style from './Label.module.scss';
+import { useTheme } from 'theme/theme';
+
+import { useStyles } from './Label.styles';
 
 interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
   name: string;
@@ -21,11 +23,13 @@ const Label: React.FC<LabelProps> = ({
   classNames,
   ...props
 }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   return (
-    <label {...props} htmlFor={name} className={cn(style.label, classNames)}>
+    <label {...props} htmlFor={name} className={cn(classes.label, classNames)}>
       <span>{title}</span>
       {children}
-      {touched && error && <span className={style.errorText}>{error}</span>}
+      {touched && error && <span className={classes.errorText}>{error}</span>}
     </label>
   );
 };

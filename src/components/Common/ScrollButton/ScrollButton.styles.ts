@@ -1,10 +1,10 @@
 import { createUseStyles } from 'react-jss';
 
-import { Light } from 'styles/light.types';
+import { Theme } from 'theme/types/theme.types';
 
 export const useStyles = createUseStyles(
   {
-    backToStart: ({ theme }: { theme: Light }) => ({
+    backToStart: ({ theme }: { theme: Theme }) => ({
       position: 'fixed',
       zIndex: -1,
       right: 50,
@@ -12,7 +12,7 @@ export const useStyles = createUseStyles(
       opacity: 0,
       transition: theme.transition.xs,
     }),
-    show: ({ theme }: { theme: Light }) => ({
+    show: ({ theme }: { theme: Theme }) => ({
       zIndex: theme.zIndex.modal,
       opacity: 1,
     }),

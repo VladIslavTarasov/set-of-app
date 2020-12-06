@@ -4,7 +4,7 @@ import Header from 'components/Calendar/Header';
 import Month from 'components/Calendar/Month';
 import caledarReducer, { initial as initialCalendar } from 'store/calendar/calendar.reducer';
 import * as calendarTypes from 'store/calendar/calendar.types';
-import { useTheme } from 'styles/theme';
+import { useTheme } from 'theme/theme';
 
 import { useStyles } from './Calendar.styles';
 

@@ -3,7 +3,7 @@ import React, { memo, useCallback, useContext } from 'react';
 import cn from 'classnames';
 
 import * as calendarActions from 'store/calendar/calendar.actions';
-import { useTheme } from 'styles/theme';
+import { useTheme } from 'theme/theme';
 
 import { CalendarDispatch } from '../Calendar';
 import { useStyles } from './Day.styles';

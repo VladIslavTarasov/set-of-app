@@ -6,7 +6,7 @@ import { MdDoneAll } from 'react-icons/md';
 
 import TaskActions from 'components/TodoList/TasksItem/Actions';
 import { Task } from 'store/tasks/tasks.types';
-import { useTheme } from 'styles/theme';
+import { useTheme } from 'theme/theme';
 import 'react-quill/dist/quill.snow.css';
 
 import { useStyles } from './TasksItem.styles';
@@ -25,9 +25,13 @@ const TasksItem: React.FC<TasksItemProps> = ({
   const [longTask, setLongTask] = useState<boolean>(false);
   const [showFullTask, setShowFullTask] = useState<boolean>(false);
 
-  const measuredRef = useCallback((node: HTMLElement) => {
-    setLongTask(node?.offsetHeight > 60);
-  }, []);
+  const measuredRef = useCallback(
+    (node: HTMLElement) => {
+      setLongTask(node?.offsetHeight > 60);
+    },
+    // eslint-disable-next-line
+    [task.description]
+  );
 
   const toogle = useCallback(() => {
     setShowFullTask(prev => !prev);

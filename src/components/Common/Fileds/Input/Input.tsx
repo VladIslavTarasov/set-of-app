@@ -2,7 +2,9 @@ import React, { memo } from 'react';
 
 import cn from 'classnames';
 
-import style from './Input.module.scss';
+import { useTheme } from 'theme/theme';
+
+import { useStyles } from './Input.styles';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -11,16 +13,18 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   classNames?: string;
 }
 
-const Input: React.FC<InputProps> = ({ name, value, touched, error, classNames, ...props }) => {
+const Input: React.FC<InputProps> = ({ name, touched, error, classNames, ...props }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   return (
     <input
       {...props}
       name={name}
       id={name}
       className={cn(
-        style.input,
+        classes.input,
         {
-          [style.inputError]: touched && error,
+          [classes.inputError]: touched && error,
         },
         classNames
       )}

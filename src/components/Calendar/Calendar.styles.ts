@@ -1,15 +1,14 @@
 import { createUseStyles } from 'react-jss';
 
-import { Light } from 'styles/light.types';
+import { Theme } from 'theme/types/theme.types';
 
 export const useStyles = createUseStyles(
   {
-    calendar: ({ theme, maxWidth }: { theme: Light; maxWidth: number }) => ({
+    calendar: ({ theme, maxWidth }: { theme: Theme; maxWidth: number }) => ({
       maxWidth: maxWidth || '100%',
       alignSelf: 'flex-start',
       backgroundColor: theme.palette.common.white,
       borderRadius: theme.borderRadius.sm,
-      overflow: 'hidden',
       boxShadow: theme.shadows.xs,
       transition: 'box-shadow 0.3s',
 

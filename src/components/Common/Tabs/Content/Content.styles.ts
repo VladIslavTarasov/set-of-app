@@ -1,10 +1,10 @@
 import { createUseStyles } from 'react-jss';
 
-import { Light } from 'styles/light.types';
+import { Theme } from 'theme/types/theme.types';
 
 export const useStyles = createUseStyles(
   {
-    wrapper: ({ theme }: { theme: Light }) => ({
+    wrapper: ({ theme }: { theme: Theme }) => ({
       wrapper: {
         boxSizing: 'border-box',
         padding: theme.offsets.sm,

@@ -1,10 +1,10 @@
 import { createUseStyles } from 'react-jss';
 
-import { Light } from 'styles/light.types';
+import { Theme } from 'theme/types/theme.types';
 
 export const useStyles = createUseStyles(
   {
-    content: ({ theme }: { theme: Light }) => ({
+    content: ({ theme }: { theme: Theme }) => ({
       display: 'flex',
       overflow: 'hidden',
       flexDirection: 'column',
@@ -26,14 +26,14 @@ export const useStyles = createUseStyles(
     titleWrapper: {
       display: 'flex',
     },
-    title: ({ theme }: { theme: Light }) => ({
+    title: ({ theme }: { theme: Theme }) => ({
       overflow: 'hidden',
       maxWidth: '300px',
-      margin: `0 ${theme.offsets.sm} ${theme.offsets.sm}`,
+      margin: `0 ${theme.offsets.sm}px ${theme.offsets.sm}px`,
       fontSize: theme.fontSize.lg,
       textOverflow: 'ellipsis',
     }),
-    paragraph: ({ theme }: { theme: Light }) => ({
+    paragraph: ({ theme }: { theme: Theme }) => ({
       marginBottom: theme.offsets.xxs,
       fontSize: theme.fontSize.sm,
 

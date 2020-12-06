@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-import { Light } from 'styles/light.types';
+import { Theme } from 'theme/types/theme.types';
 
 export const useStyles = createUseStyles(
   {
@@ -10,7 +10,7 @@ export const useStyles = createUseStyles(
       alignItems: 'center',
     }),
 
-    arrow: ({ theme }: { theme: Light }) => ({
+    arrow: ({ theme }: { theme: Theme }) => ({
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',

@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-import { Light } from 'styles/light.types';
+import { Theme } from 'theme/types/theme.types';
 
 export const useStyles = createUseStyles(
   {
@@ -15,12 +15,13 @@ export const useStyles = createUseStyles(
       position: 'relative',
       textAlign: 'center',
     }),
-    hasEvent: ({ theme }: { theme: Light }) => ({
+    hasEvent: ({ theme }: { theme: Theme }) => ({
       position: 'relative',
 
       '&::before': {
         content: "''",
         position: 'absolute',
+        zIndex: 2,
         left: '50%',
         bottom: 10,
         width: 35,

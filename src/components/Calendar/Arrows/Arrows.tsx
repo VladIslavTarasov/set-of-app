@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { AiOutlineDoubleRight, AiOutlineDoubleLeft } from 'react-icons/ai';
 
 import * as actions from 'store/calendar/calendar.actions';
-import { useTheme } from 'styles/theme';
+import { useTheme } from 'theme/theme';
 
 import { CalendarDispatch } from '../Calendar';
 import { useStyles } from './Arrows.styles';

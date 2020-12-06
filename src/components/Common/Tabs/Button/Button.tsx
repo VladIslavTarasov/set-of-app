@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 
 import cn from 'classnames';
 
-import { useTheme } from 'styles/theme';
+import { useTheme } from 'theme/theme';
 
 import { useStyles } from './Button.styles';
 

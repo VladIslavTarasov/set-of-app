@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-import { Light } from 'styles/light.types';
+import { Theme } from 'theme/types/theme.types';
 
 export const useStyles = createUseStyles(
   {
@@ -10,14 +10,14 @@ export const useStyles = createUseStyles(
       },
 
       '50%': {
-        transform: 'translate(-50%, -50%) scale(1)',
+        transform: 'translate(-50%, -50%) scale(0.9)',
       },
 
       '100%': {
         transform: 'translate(-50%, -50%) scale(0.8)',
       },
     },
-    button: ({ theme }: { theme: Light }) => ({
+    button: ({ theme }: { theme: Theme }) => ({
       position: 'relative',
       width: 60,
       height: 60,
@@ -48,9 +48,10 @@ export const useStyles = createUseStyles(
       },
 
       '&:focus, &:hover': {
+        color: theme.palette.common.white,
         '&::after': {
           borderRadius: theme.borderRadius.md2,
-          backgroundColor: theme.palette.common.gray,
+          backgroundColor: theme.palette.primary.light,
         },
       },
 
@@ -67,10 +68,10 @@ export const useStyles = createUseStyles(
         },
       },
     }),
-    activeMonth: ({ theme }: { theme: Light }) => ({
+    activeMonth: ({ theme }: { theme: Theme }) => ({
       color: theme.palette.common.black,
     }),
-    today: ({ theme }: { theme: Light }) => ({
+    today: ({ theme }: { theme: Theme }) => ({
       color: theme.palette.common.white,
 
       '&::after': {
@@ -80,7 +81,7 @@ export const useStyles = createUseStyles(
         transform: 'translate(-50%, -50%) scale(0.8)',
       },
     }),
-    choosen: ({ theme }: { theme: Light }) => ({
+    choosen: ({ theme }: { theme: Theme }) => ({
       color: theme.palette.common.white,
 
       '&::after': {

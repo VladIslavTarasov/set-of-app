@@ -11,7 +11,7 @@ import TasksItem from 'components/TodoList/TasksItem';
 import { makeGetMapTasks } from 'store/tasks/tasks.selectors';
 import { TasksMap, State } from 'store/tasks/tasks.types';
 import { RootState } from 'store/types';
-import { useTheme } from 'styles/theme';
+import { useTheme } from 'theme/theme';
 import { debounce } from 'utils/debounce';
 
 import { useStyles } from './TasksList.styles';

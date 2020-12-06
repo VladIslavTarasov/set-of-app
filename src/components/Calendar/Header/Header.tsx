@@ -5,7 +5,7 @@ import moment from 'moment';
 import Arrows from 'components/Calendar/Arrows';
 import { Select } from 'components/Common/Fileds';
 import * as calendarActions from 'store/calendar/calendar.actions';
-import { useTheme } from 'styles/theme';
+import { useTheme } from 'theme/theme';
 
 import { CalendarDispatch } from '../Calendar';
 import { useStyles } from './Header.styles';

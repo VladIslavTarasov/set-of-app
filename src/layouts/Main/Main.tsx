@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useTheme } from 'styles/theme';
+import { useTheme } from 'theme/theme';
 
 import { useStyles } from './Main.styles';
 

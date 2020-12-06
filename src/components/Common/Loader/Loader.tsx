@@ -1,8 +1,10 @@
 import React from 'react';
 
-import cn from 'classnames';
+import { BiLoader } from 'react-icons/bi';
 
-import style from './Loader.module.scss';
+import { useTheme } from 'theme/theme';
+
+import { useStyles } from './Loader.styles';
 
 export interface LoaderProps {
   size: 'xs' | 'sm' | 'lg';
@@ -11,12 +13,14 @@ export interface LoaderProps {
 }
 
 const Loader: React.FC<LoaderProps> = ({ size, mode, classNames }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
+
   return (
-    <div className={cn(style.wrapper, classNames)}>
-      <div className={cn(style[mode], style[size])}>
-        <div />
-        <div />
-      </div>
+    <div className={classes.loader}>
+      <span>
+        <BiLoader size="80px" />
+      </span>
     </div>
   );
 };

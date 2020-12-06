@@ -2,7 +2,7 @@ import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 
 import cn from 'classnames';
 
-import { useTheme } from 'styles/theme';
+import { useTheme } from 'theme/theme';
 
 import Button from '../Button';
 import { TabsContentProps } from '../Content/Content';

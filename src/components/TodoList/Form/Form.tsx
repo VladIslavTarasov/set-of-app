@@ -1,7 +1,6 @@
 import React, { useMemo, useRef, memo, useCallback } from 'react';
 
 import { useFormik } from 'formik';
-import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { AiOutlineClose } from 'react-icons/ai';
 import * as Yup from 'yup';
@@ -10,7 +9,7 @@ import Button from 'components/Common/Button';
 import { Input, Checkbox, Label, Wysiwyg } from 'components/Common/Fileds';
 import { useClickOutside } from 'hooks';
 import { Task } from 'store/tasks/tasks.types';
-import { useTheme } from 'styles/theme';
+import { useTheme } from 'theme/theme';
 
 import { useStyles } from './Form.styles';
 
@@ -78,7 +77,7 @@ const Form: React.FC<FormProps> = ({ onSubmit, onClose, mode, task, loading }) =
 
   useClickOutside(divElement, onClose);
 
-  return createPortal(
+  return (
     <section className={classes.container}>
       <div ref={divElement} className={classes.formWrapper}>
         <Button onClick={onClose} type="button" className={classes.close} mode="icon">
@@ -126,8 +125,7 @@ const Form: React.FC<FormProps> = ({ onSubmit, onClose, mode, task, loading }) =
           </Button>
         </form>
       </div>
-    </section>,
-    document.body
+    </section>
   );
 };
 

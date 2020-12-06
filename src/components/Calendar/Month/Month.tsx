@@ -5,7 +5,7 @@ import moment from 'moment';
 
 import Day from 'components/Calendar/Day';
 import { CalendarDay } from 'store/calendar/calendar.types';
-import { useTheme } from 'styles/theme';
+import { useTheme } from 'theme/theme';
 
 import { useStyles } from './Month.styles';
 

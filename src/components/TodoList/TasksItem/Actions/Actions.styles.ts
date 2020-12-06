@@ -1,10 +1,10 @@
 import { createUseStyles } from 'react-jss';
 
-import { Light } from 'styles/light.types';
+import { Theme } from 'theme/types/theme.types';
 
 export const useStyles = createUseStyles(
   {
-    actions: ({ theme }: { theme: Light }) => ({
+    actions: ({ theme }: { theme: Theme }) => ({
       display: 'flex',
 
       '& > button:not(:first-child)': {

@@ -6,19 +6,18 @@ import { Provider } from 'react-redux';
 
 import AppRouter from 'router/AppRouter';
 import store from 'store';
-import lightTheme from 'styles/light';
-import { ThemeProvider } from 'styles/theme';
+import Theme from 'theme/Theme';
 
 import 'locales/init';
 
 const App: React.FC = () => {
   return (
     <I18nextProvider i18n={i18n}>
-      <ThemeProvider theme={lightTheme}>
-        <Provider store={store}>
+      <Provider store={store}>
+        <Theme>
           <AppRouter />
-        </Provider>
-      </ThemeProvider>
+        </Theme>
+      </Provider>
     </I18nextProvider>
   );
 };

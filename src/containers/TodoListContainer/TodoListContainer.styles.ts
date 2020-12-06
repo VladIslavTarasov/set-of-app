@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-import { Light } from 'styles/light.types';
+import { Theme } from 'theme/types/theme.types';
 
 export const useStyles = createUseStyles(
   {
@@ -8,9 +8,14 @@ export const useStyles = createUseStyles(
       display: 'flex',
       alignItem: 'flex-start',
     }),
-    todolist: ({ theme }: { theme: Light }) => ({
+    todolist: ({ theme }: { theme: Theme }) => ({
       flexGrow: 1,
       marginLeft: theme.offsets.sm,
+    }),
+    formWrapper: ({ theme }: { theme: Theme }) => ({
+      margin: `${theme.offsets.md}px 0px`,
+      display: 'flex',
+      justifyContent: 'center',
     }),
   },
   { name: 'TodoListContainer' }

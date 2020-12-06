@@ -1,10 +1,10 @@
 import { createUseStyles } from 'react-jss';
 
-import { Light } from 'styles/light.types';
+import { Theme } from 'theme/types/theme.types';
 
 export const useStyles = createUseStyles(
   {
-    container: ({ theme }: { theme: Light }) => ({
+    container: ({ theme }: { theme: Theme }) => ({
       width: '100%',
       backgroundColor: theme.palette.common.gray,
     }),
@@ -13,12 +13,13 @@ export const useStyles = createUseStyles(
       minHeight: 60,
     },
     footer: {},
-    main: ({ theme }: { theme: Light }) => ({
+    main: ({ theme }: { theme: Theme }) => ({
+      boxSizing: 'border-box',
       position: 'relative',
       width: '100%',
       maxWidth: 1440,
-      minHeight: '100vh',
-      padding: `0 ${theme.offsets.sm}`,
+      minHeight: 'calc(100vh - 60px)',
+      padding: `0 ${theme.offsets.sm}px`,
       margin: '0 auto',
     }),
   },

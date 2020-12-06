@@ -5,7 +5,7 @@ import { MdClear } from 'react-icons/md';
 
 import Button from 'components/Common/Button';
 import { Input } from 'components/Common/Fileds';
-import { useTheme } from 'styles/theme';
+import { useTheme } from 'theme/theme';
 
 import { useStyles } from './FilterField.styles';
 

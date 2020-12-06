@@ -1,10 +1,10 @@
 import { createUseStyles } from 'react-jss';
 
-import { Light } from 'styles/light.types';
+import { Theme } from 'theme/types/theme.types';
 
 export const useStyles = createUseStyles(
   {
-    button: ({ theme }: { theme: Light }) => ({
+    button: ({ theme }: { theme: Theme }) => ({
       minWidth: 150,
       boxSizing: 'border-box',
       padding: theme.offsets.sm,
@@ -21,7 +21,7 @@ export const useStyles = createUseStyles(
         textDecoration: 'underline',
       },
     }),
-    selected: ({ theme }: { theme: Light }) => ({
+    selected: ({ theme }: { theme: Theme }) => ({
       backgroundColor: theme.palette.primary.main,
       borderBottom: `2px solid ${theme.palette.primary.dark}`,
       color: theme.palette.common.white,

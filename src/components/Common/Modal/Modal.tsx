@@ -4,8 +4,9 @@ import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 
 import Button from 'components/Common/Button';
+import { useTheme } from 'theme/theme';
 
-import style from './Modal.module.scss';
+import { useStyles } from './Modal.styles';
 
 export interface ModalProps {
   title?: string;
@@ -14,27 +15,29 @@ export interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ title, description, onClose, children }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   const { t } = useTranslation('buttons');
 
   return createPortal(
-    <div data-testid="modal" className={style.container}>
-      <div className={style.modal} role="dialog">
+    <div data-testid="modal" className={classes.container}>
+      <div className={classes.modal} role="dialog">
         {title && (
-          <header className={style.header}>
-            <h3 className={style.title}>{title}</h3>
+          <header className={classes.header}>
+            <h3 className={classes.title}>{title}</h3>
           </header>
         )}
 
         {description && (
-          <div className={style.content}>
+          <div className={classes.content}>
             {Array.isArray(description) ? (
               description.map(item => (
-                <p key={item} className={style.text}>
+                <p key={item} className={classes.text}>
                   {item}
                 </p>
               ))
             ) : (
-              <p className={style.text}>{description}</p>
+              <p className={classes.text}>{description}</p>
             )}
           </div>
         )}

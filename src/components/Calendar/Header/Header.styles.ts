@@ -1,10 +1,10 @@
 import { createUseStyles } from 'react-jss';
 
-import { Light } from 'styles/light.types';
+import { Theme } from 'theme/types/theme.types';
 
 export const useStyles = createUseStyles(
   {
-    header: ({ theme }: { theme: Light }) => ({
+    header: ({ theme }: { theme: Theme }) => ({
       display: 'flex',
       flexWrap: 'wrap',
       alignItems: 'center',
@@ -19,19 +19,19 @@ export const useStyles = createUseStyles(
     separator: () => ({
       width: 10,
     }),
-    title: ({ theme }: { theme: Light }) => ({
+    title: ({ theme }: { theme: Theme }) => ({
       fontSize: theme.fontSize.lg,
       padding: `${theme.offsets.sm}px 0`,
-      color: theme.palette.common.gray,
+      color: theme.palette.common.white,
       alightSelf: 'flexStart',
     }),
-    month: ({ theme }: { theme: Light }) => ({
+    month: ({ theme }: { theme: Theme }) => ({
       display: 'flex',
       justifyContent: 'center',
       minWidth: 250,
       margin: `0 ${theme.offsets.sm}px`,
     }),
-    arrows: ({ theme }: { theme: Light }) => ({
+    arrows: ({ theme }: { theme: Theme }) => ({
       padding: `${theme.offsets.sm}px 0`,
       marginLeft: 'auto',
     }),

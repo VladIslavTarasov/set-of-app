@@ -7,7 +7,7 @@ import { AiFillCaretUp } from 'react-icons/ai';
 import Button from 'components/Common/Button';
 import { useScrollToElement } from 'hooks/useScrollToElement';
 import * as calendarTypes from 'store/calendar/calendar.types';
-import { useTheme } from 'styles/theme';
+import { useTheme } from 'theme/theme';
 
 import { useStyles } from './ScrollButton.styles';
 
