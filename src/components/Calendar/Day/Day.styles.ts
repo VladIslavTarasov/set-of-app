@@ -21,7 +21,7 @@ export const useStyles = createUseStyles(
       position: 'relative',
       width: 60,
       height: 60,
-      padding: `${theme.offsets.md} 0px`,
+      padding: `${theme.offsets.md}px 0px`,
       border: 'none',
       backgroundColor: 'transparent',
       color: theme.palette.common.gray,
