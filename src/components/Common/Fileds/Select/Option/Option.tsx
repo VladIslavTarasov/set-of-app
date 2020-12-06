@@ -2,8 +2,10 @@ import React, { memo, useRef, useEffect } from 'react';
 
 import cn from 'classnames';
 
+import { useTheme } from 'theme/theme';
+
 import { Option as OptionType } from '../Select';
-import style from './Option.module.scss';
+import { useStyles } from './Option.styles';
 
 interface OptionProps {
   option: OptionType;
@@ -12,6 +14,9 @@ interface OptionProps {
 }
 
 const Option: React.FC<OptionProps> = ({ onChange, option, value }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
+
   const ref = useRef<HTMLLIElement>(null);
   const selected = option.value === value;
 
@@ -37,7 +42,7 @@ const Option: React.FC<OptionProps> = ({ onChange, option, value }) => {
       ref={ref}
       onKeyDown={handleKeyDown}
       onClick={handleClick}
-      className={cn(style.item, { [style.selected]: selected })}
+      className={cn(classes.item, { [classes.selected]: selected })}
       title={option.title}
       role="option"
       aria-selected={selected}

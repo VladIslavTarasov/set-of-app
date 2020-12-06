@@ -2,7 +2,9 @@ import React, { memo } from 'react';
 
 import cn from 'classnames';
 
-import style from './Button.module.scss';
+import { useTheme } from 'theme/theme';
+
+import { useStyles } from './Button.styles';
 
 interface ButtonProps {
   onClick: (e: React.MouseEvent, value: string) => void;
@@ -12,6 +14,9 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ onClick, value, selected, classNames, ...props }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
+
   const handleChange = (e: React.MouseEvent) => {
     if (!selected) onClick(e, value);
   };
@@ -19,7 +24,7 @@ const Button: React.FC<ButtonProps> = ({ onClick, value, selected, classNames, .
   return (
     <button
       onClick={handleChange}
-      className={cn(style.button, { [style.selected]: selected }, classNames)}
+      className={cn(classes.button, { [classes.selected]: selected }, classNames)}
       type="button"
       role="tab"
       aria-selected={selected}

@@ -26,6 +26,7 @@ export default {
     formDescription: 'Description',
     empty: 'No tasks',
     filter: 'Filter by title',
+    changeColor: 'Change color on {{name}}',
   },
   errorMessages: {
     required: 'Required',

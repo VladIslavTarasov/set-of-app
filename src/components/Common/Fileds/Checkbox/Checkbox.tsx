@@ -1,8 +1,10 @@
 import React, { memo } from 'react';
 
+import { useTheme } from 'theme/theme';
+
 import Input from '../Input';
 import Label from '../Label';
-import style from './Checkbox.module.scss';
+import { useStyles } from './Checkbox.styles';
 
 interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -11,15 +13,17 @@ interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({ checked, title, name, ...props }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   return (
-    <Label name={name} classNames={style.labelChecbox}>
+    <Label name={name} classNames={classes.labelChecbox}>
       <Input
         {...props}
         name={name}
         id={name}
         type="checkbox"
         checked={checked}
-        classNames={style.checkbox}
+        classNames={classes.checkbox}
       />
       <span>{title}</span>
     </Label>
