@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from 'theme/theme';
 import { ThemeSwitcherContext } from 'theme/Theme';
 import { palettes, PaletteNames } from 'theme/themes';
+import { setColorTheme } from 'utils/localStorage';
 
 import { useStyles } from './ThemeSwitcher.styles';
 
@@ -17,7 +18,7 @@ const ThemeSwitcher: React.FC = () => {
 
   const makeHandleClick = (value: PaletteNames) => () => {
     setTheme(value);
-    window.localStorage.setItem('palette', value);
+    setColorTheme(value);
   };
 
   return (

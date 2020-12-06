@@ -1,5 +1,5 @@
 import { Theme } from '../types/theme.types';
-import common from './common/commonStyles';
+import common from './common';
 
 const redTheme: Theme = {
   ...common,

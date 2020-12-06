@@ -1,4 +1,4 @@
-import { Common } from '../../types/commonStyles.types';
+import { Common } from '../types/common.types';
 
 const common: Common = {
   fontSize: {
