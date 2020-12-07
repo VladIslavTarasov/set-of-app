@@ -30,6 +30,6 @@ export interface Common {
     sm: string;
   };
   transition: {
-    xs: number;
+    xs: string;
   };
 }

@@ -15,7 +15,7 @@ module.exports = (req, res) => {
           : task
       ),
     };
-console.log(req.body)
+
     fs.writeFileSync(path.join(__dirname, '../db.json'), JSON.stringify(updateTasks));
 
     res.status(200).status(200).json(successResponse(null));

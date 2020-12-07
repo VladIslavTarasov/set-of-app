@@ -64,6 +64,6 @@ export interface Theme {
     sm: string;
   };
   transition: {
-    xs: number;
+    xs: string;
   };
 }
