@@ -6,6 +6,7 @@ import { AiOutlineFileAdd } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Button from 'components/Common/Button';
+import Drawer from 'components/Common/Drawer';
 import TaskForm from 'components/TodoList/Form';
 import * as tasksActions from 'store/tasks/tasks.actions';
 import { getSlice } from 'store/tasks/tasks.selectors';
@@ -80,25 +81,20 @@ const TodoListFormsContainer: React.FC<TodoListFormsContainerProps> = () => {
       >
         <AiOutlineFileAdd />
       </Button>
+      <Drawer open={activeForm !== ActiveForm.NULL} onClose={handleCloseForm}>
+        {activeForm === ActiveForm.CREATE && (
+          <TaskForm mode="create" loading={isSubmitingForm} onSubmit={handleCreateTask} />
+        )}
 
-      {activeForm === ActiveForm.CREATE && (
-        <TaskForm
-          mode="create"
-          loading={isSubmitingForm}
-          onClose={handleCloseForm}
-          onSubmit={handleCreateTask}
-        />
-      )}
-
-      {activeForm === ActiveForm.EDIT && (
-        <TaskForm
-          mode="edit"
-          task={editTask}
-          loading={isSubmitingForm}
-          onClose={handleCloseForm}
-          onSubmit={handleEditTask}
-        />
-      )}
+        {activeForm === ActiveForm.EDIT && (
+          <TaskForm
+            mode="edit"
+            task={editTask}
+            loading={isSubmitingForm}
+            onSubmit={handleEditTask}
+          />
+        )}
+      </Drawer>
     </>
   );
 };

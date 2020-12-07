@@ -32,7 +32,7 @@ const common: Common = {
     sm: '0px 0px 8px 0 #222',
   },
   transition: {
-    xs: 0.3,
+    xs: '0.3s',
   },
 };
 

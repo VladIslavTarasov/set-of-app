@@ -15,14 +15,19 @@ export const useStyles = createUseStyles(
     }) => ({
       position: 'fixed',
       zIndex: 1,
-      top: showHeader ? 0 : -60,
-      opacity: transparent ? 0.5 : 1,
+      top: 0,
       right: 0,
       left: 0,
       height: 60,
+      opacity: transparent ? 0.5 : 1,
       color: theme.palette.common.white,
       backgroundColor: theme.palette.primary.light,
       transition: theme.transition.xs,
+      transform: `translateY(${showHeader ? 0 : -40}px)`,
+
+      '&:hover': {
+        transform: `translateY(0px)`,
+      },
     }),
     wrapper: ({ theme }: { theme: Theme }) => ({
       display: 'flex',
