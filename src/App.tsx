@@ -4,9 +4,9 @@ import i18n from 'i18next';
 import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
 
+import Theme from 'components/Common/Theme/Theme';
 import AppRouter from 'router/AppRouter';
 import store from 'store';
-import Theme from 'theme/Theme';
 
 import 'locales/init';
 

@@ -4,16 +4,16 @@ import { Theme } from 'theme/types/theme.types';
 
 export const useStyles = createUseStyles(
   {
-    container: ({ theme }: { theme: Theme }) => ({
+    container: ({ theme, error }: { theme: Theme; error: boolean }) => ({
       marginBottom: theme.offsets.sm,
       '& .ql-toolbar.ql-snow, & .ql-container.ql-snow': {
-        borderColor: theme.palette.primary.main,
+        borderColor: error ? theme.palette.error.dark : theme.palette.common.gray,
         borderRadius: theme.borderRadius.sm,
       },
 
       '& .ql-toolbar.ql-snow + .ql-container.ql-snow': {
         marginTop: theme.offsets.xs,
-        borderTop: `1px solid ${theme.palette.primary.main}`,
+        borderTop: `1px solid ${error ? theme.palette.error.dark : theme.palette.common.gray}`,
       },
 
       '& .ql-editor': {
@@ -22,7 +22,7 @@ export const useStyles = createUseStyles(
     }),
     label: ({ theme }: { theme: Theme }) => ({
       marginBottom: theme.offsets.xs,
-      fontSize: theme.fontSize.xs,
+      fontSize: theme.fontSize.sm,
     }),
     errorText: ({ theme }: { theme: Theme }) => ({
       marginTop: theme.offsets.xs,

@@ -5,6 +5,7 @@ import { Theme } from 'theme/types/theme.types';
 export const useStyles = createUseStyles(
   {
     substrate: ({ theme }: { theme: Theme }) => ({
+      height: '100vh',
       position: 'fixed',
       zIndex: theme.zIndex.modal,
       top: 0,

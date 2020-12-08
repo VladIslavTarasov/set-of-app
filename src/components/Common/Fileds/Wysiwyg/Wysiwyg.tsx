@@ -25,7 +25,7 @@ interface WysiwygProps {
 
 const Wysiwyg: React.FC<WysiwygProps> = ({ value, label, touched, error, readonly, onChange }) => {
   const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles({ theme, error: Boolean(touched && error) });
 
   const quill = useRef<any>(null);
 

@@ -6,10 +6,10 @@ const { successResponse, failureResponse } = require('../responses');
 
 module.exports = (req, res) => {
   try {
-    const tasks = JSON.parse(fs.readFileSync(path.join(__dirname, '../db.json')));
+    const db = JSON.parse(fs.readFileSync(path.join(__dirname, '../db.json')));
 
     const updateTasks = {
-      ...tasks,
+      ...db.tasks,
       [req.params.date]: [
         {
           ...req.body,
@@ -17,10 +17,13 @@ module.exports = (req, res) => {
           complete: false,
           description: req.body.description.split('\n'),
         },
-      ].concat(tasks[req.params.date] || []),
+      ].concat(db.tasks[req.params.date] || []),
     };
 
-    fs.writeFileSync(path.join(__dirname, '../db.json'), JSON.stringify(updateTasks));
+    fs.writeFileSync(
+      path.join(__dirname, '../db.json'),
+      JSON.stringify({ ...db, tasks: updateTasks })
+    );
 
     res.status(200).json(successResponse(null));
   } catch (e) {

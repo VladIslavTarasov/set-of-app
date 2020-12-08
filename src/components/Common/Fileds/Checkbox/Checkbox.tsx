@@ -16,7 +16,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ checked, title, name, ...props }) =
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <Label name={name} classNames={classes.labelChecbox}>
+    <Label name={name} className={classes.labelChecbox}>
       <Input
         {...props}
         name={name}

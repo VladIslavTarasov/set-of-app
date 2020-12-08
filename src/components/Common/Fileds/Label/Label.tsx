@@ -11,7 +11,8 @@ interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
   touched?: boolean;
   error?: string;
   title?: string;
-  classNames?: string;
+  className?: string;
+  uppercase?: boolean;
 }
 
 const Label: React.FC<LabelProps> = ({
@@ -20,13 +21,14 @@ const Label: React.FC<LabelProps> = ({
   children,
   touched,
   error,
-  classNames,
+  className,
+  uppercase,
   ...props
 }) => {
   const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles({ theme, uppercase });
   return (
-    <label {...props} htmlFor={name} className={cn(classes.label, classNames)}>
+    <label {...props} htmlFor={name} className={cn(classes.label, className)}>
       <span>{title}</span>
       {children}
       {touched && error && <span className={classes.errorText}>{error}</span>}

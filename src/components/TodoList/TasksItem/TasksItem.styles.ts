@@ -41,6 +41,33 @@ export const useStyles = createUseStyles(
         marginBottom: '0',
       },
     }),
+    task: ({ theme }: { theme: Theme }) => ({
+      display: 'flex',
+      boxSizing: 'border-box',
+      flex: '1 1 100%',
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+      padding: theme.offsets.sm,
+      backgroundColor: theme.palette.info.light,
+      border: `2px solid ${theme.palette.info.main}`,
+      marginRight: theme.offsets.sm,
+      marginBottom: theme.offsets.sm,
+      borderRadius: theme.borderRadius.md,
+      boxShadow: theme.shadows.xs,
+      transition: theme.transition.xs,
+
+      '&:hover': {
+        boxShadow: theme.shadows.sm,
+      },
+    }),
+    complete: ({ theme }: { theme: Theme }) => ({
+      backgroundColor: theme.palette.success.light,
+      border: `2px solid ${theme.palette.success.main}`,
+    }),
+    important: ({ theme }: { theme: Theme }) => ({
+      backgroundColor: theme.palette.error.light,
+      border: `2px solid ${theme.palette.error.main}`,
+    }),
   },
   { name: 'TasksItem' }
 );

@@ -16,19 +16,18 @@ export interface TaskFormFields {
   description: string;
   important: boolean;
 }
-
-const initial = {
-  title: '',
-  description: '',
-  important: false,
-};
-
 export interface FormProps {
   task?: Task | null;
   mode: 'create' | 'edit';
   onSubmit: (values: TaskFormFields) => void;
   loading?: boolean;
 }
+
+const initial = {
+  title: '',
+  description: '',
+  important: false,
+};
 
 const makeInitialValues = (mode: 'create' | 'edit', task?: Task | null) => {
   if (task && mode === 'edit') {
