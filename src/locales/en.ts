@@ -37,4 +37,8 @@ export default {
     edit: 'Edit task',
     delete: 'Delete task',
   },
+  palette: {
+    edit: 'Edit',
+    create: 'Create',
+  },
 };

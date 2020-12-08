@@ -6,6 +6,37 @@ export interface Common {
     lg: number;
     xl: number;
   };
+  palette: {
+    primary: {
+      button: {
+        light: string;
+        main: string;
+        dark: string;
+      };
+      bg: string;
+      border: string;
+    };
+    common: {
+      black: string;
+      white: string;
+      gray: string;
+    };
+    success: {
+      light: string;
+      main: string;
+      dark: string;
+    };
+    error: {
+      light: string;
+      main: string;
+      dark: string;
+    };
+    info: {
+      light: string;
+      main: string;
+      dark: string;
+    };
+  };
   borderRadius: {
     xs: number;
     sm: number;

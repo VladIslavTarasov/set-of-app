@@ -1,11 +1,15 @@
 const express = require('express');
 const cors = require('cors');
 
-const create = require('./tasks/create');
-const edit = require('./tasks/edit');
-const get = require('./tasks/get');
-const remove = require('./tasks/delete');
-const complete = require('./tasks/complete');
+const createTask = require('./tasks/create');
+const editTask = require('./tasks/edit');
+const getTasks = require('./tasks/get');
+const removeTask = require('./tasks/delete');
+const completeTask = require('./tasks/complete');
+
+const getPalette = require('./palette/get');
+const createPalette = require('./palette/create');
+const editPalette = require('./palette/edit');
 
 const app = express();
 const port = 8080;
@@ -13,7 +17,8 @@ const port = 8080;
 app.use(cors());
 app.use(express.json());
 
-app.route('/tasks/:date').get(get).post(create).delete(remove).put(edit);
-app.route('/task/compelete/:date').put(complete);
+app.route('/tasks/:date').get(getTasks).post(createTask).delete(removeTask).put(editTask);
+app.route('/task/compelete/:date').put(completeTask);
+app.route('/palette').get(getPalette).post(createPalette).put(editPalette);
 
 app.listen(port);

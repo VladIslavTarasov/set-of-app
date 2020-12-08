@@ -10,7 +10,6 @@ import Drawer from 'components/Common/Drawer';
 import TaskForm from 'components/TodoList/Form';
 import * as tasksActions from 'store/tasks/tasks.actions';
 import { getSlice } from 'store/tasks/tasks.selectors';
-import { ResponseStatuses } from 'store/types';
 
 interface TodoListFormsContainerProps {}
 
@@ -24,9 +23,7 @@ const TodoListFormsContainer: React.FC<TodoListFormsContainerProps> = () => {
   const { t } = useTranslation('todo');
   const [activeForm, setActiveForm] = useState<ActiveForm>(ActiveForm.NULL);
   const dispatch = useDispatch();
-  const { choosenDate, createTaskRequestStatus, editTaskRequestStatus, editTask } = useSelector(
-    getSlice
-  );
+  const { choosenDate, editTask } = useSelector(getSlice);
 
   useEffect(() => {
     if (editTask) {
@@ -64,11 +61,6 @@ const TodoListFormsContainer: React.FC<TodoListFormsContainerProps> = () => {
     [choosenDate]
   );
 
-  const isSubmitingForm = useMemo(
-    () => [createTaskRequestStatus, editTaskRequestStatus].includes(ResponseStatuses.PENDING),
-    [createTaskRequestStatus, editTaskRequestStatus]
-  );
-
   return (
     <>
       <Button
@@ -82,17 +74,10 @@ const TodoListFormsContainer: React.FC<TodoListFormsContainerProps> = () => {
         <AiOutlineFileAdd />
       </Button>
       <Drawer open={activeForm !== ActiveForm.NULL} onClose={handleCloseForm}>
-        {activeForm === ActiveForm.CREATE && (
-          <TaskForm mode="create" loading={isSubmitingForm} onSubmit={handleCreateTask} />
-        )}
+        {activeForm === ActiveForm.CREATE && <TaskForm mode="create" onSubmit={handleCreateTask} />}
 
         {activeForm === ActiveForm.EDIT && (
-          <TaskForm
-            mode="edit"
-            task={editTask}
-            loading={isSubmitingForm}
-            onSubmit={handleEditTask}
-          />
+          <TaskForm mode="edit" task={editTask} onSubmit={handleEditTask} />
         )}
       </Drawer>
     </>

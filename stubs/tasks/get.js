@@ -5,7 +5,7 @@ const { successResponse, failureResponse } = require('../responses');
 
 module.exports = (req, res) => {
   try {
-    const tasksList = JSON.parse(fs.readFileSync(path.join(__dirname, '../db.json')));
+    const tasksList = JSON.parse(fs.readFileSync(path.join(__dirname, '../db.json'))).tasks;
 
     const tasks = Object.keys(tasksList).reduce(
       (a, c) =>

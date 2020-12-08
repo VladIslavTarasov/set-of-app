@@ -38,7 +38,13 @@ const TasksItem: React.FC<TasksItemProps> = ({
   }, []);
 
   return (
-    <>
+    <div
+      role="listitem"
+      className={cn(classes.task, {
+        [classes.complete]: task.complete,
+        [classes.important]: task.important,
+      })}
+    >
       <article
         className={cn(classes.content, {
           [classes.show]: longTask && showFullTask,
@@ -61,7 +67,7 @@ const TasksItem: React.FC<TasksItemProps> = ({
         onToggle={toogle}
         task={task}
       />
-    </>
+    </div>
   );
 };
 

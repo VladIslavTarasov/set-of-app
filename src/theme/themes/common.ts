@@ -1,6 +1,37 @@
 import { Common } from '../types/common.types';
 
 const common: Common = {
+  palette: {
+    primary: {
+      button: {
+        light: '#fff',
+        main: '#eee',
+        dark: '#bbb',
+      },
+      bg: '#fff',
+      border: '#fef',
+    },
+    common: {
+      black: '#222',
+      white: '#fff',
+      gray: '#e5e5e5',
+    },
+    success: {
+      light: '#81c784',
+      main: '#4caf50',
+      dark: '#388e3c',
+    },
+    error: {
+      light: '#e57373',
+      main: '#f44336',
+      dark: '#d32f2f',
+    },
+    info: {
+      light: '#64b5f6',
+      main: '#2196f3',
+      dark: '#1976d2',
+    },
+  },
   fontSize: {
     xs: 12,
     sm: 14,

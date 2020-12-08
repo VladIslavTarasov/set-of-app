@@ -4,16 +4,16 @@ import { Theme } from 'theme/types/theme.types';
 
 export const useStyles = createUseStyles(
   {
-    input: ({ theme }: { theme: Theme }) => ({
+    input: ({ theme, borderColor }: { theme: Theme; borderColor: string }) => ({
       flex: '1 1 100%',
       padding: theme.offsets.xs,
-      border: `1px solid ${theme.palette.primary.main}`,
+      border: `1px solid ${borderColor || theme.palette.common.gray}`,
       borderRadius: theme.borderRadius.sm,
       fontSize: theme.fontSize.sm,
       transition: theme.transition.xs,
 
       '&:focus': {
-        borderColor: theme.palette.primary.dark,
+        borderColor: borderColor || theme.palette.common.black,
       },
     }),
     inputError: ({ theme }: { theme: Theme }) => ({

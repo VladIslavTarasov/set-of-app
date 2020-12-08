@@ -16,20 +16,20 @@ export const useStyles = createUseStyles(
       alignItems: 'center',
       justifyContent: 'center',
       padding: transparent ? 0 : '0.75rem',
-      border: transparent ? 'none' : `2px solid ${theme.palette.primary.border}`,
-      backgroundColor: transparent ? 'transparent' : theme.palette.primary.button.light,
+      border: transparent ? 'none' : `2px solid ${theme.palette.primary.main}`,
+      backgroundColor: transparent ? 'transparent' : theme.palette.primary.light,
       borderRadius: theme.borderRadius.sm,
       transition: theme.transition.xs,
       fontSize: theme.fontSize[fs],
       textTransform: 'uppercase',
-      color: theme.palette.common[color || 'black'],
+      color: theme.palette.common[color || 'white'],
 
       '&:focus,  &:hover': {
-        backgroundColor: transparent ? 'transparent' : theme.palette.primary.button.main,
+        backgroundColor: transparent ? 'transparent' : theme.palette.primary.main,
       },
 
       '&:active': {
-        backgroundColor: transparent ? 'transparent' : theme.palette.primary.button.dark,
+        backgroundColor: transparent ? 'transparent' : theme.palette.primary.main,
       },
 
       '&:hover': {

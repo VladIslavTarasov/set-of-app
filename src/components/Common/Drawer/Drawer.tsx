@@ -1,5 +1,6 @@
 import React, { memo, useLayoutEffect, useRef } from 'react';
 
+import { createPortal } from 'react-dom';
 import { AiOutlineClose } from 'react-icons/ai';
 
 import Button from 'components/Common/Button';
@@ -25,7 +26,7 @@ const Drawer: React.FC<DrawerProps> = ({ onClose, open, children }) => {
 
   useClickOutside(drawer, onClose, open);
 
-  return (
+  return createPortal(
     <>
       {open && <div className={classes.substrate} />}
       <div ref={drawer} className={classes.wrapper}>
@@ -34,7 +35,8 @@ const Drawer: React.FC<DrawerProps> = ({ onClose, open, children }) => {
         </Button>
         {children}
       </div>
-    </>
+    </>,
+    document.body
   );
 };
 

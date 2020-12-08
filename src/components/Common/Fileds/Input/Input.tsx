@@ -11,11 +11,19 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   touched?: boolean;
   error?: string;
   classNames?: string;
+  borderColor?: string;
 }
 
-const Input: React.FC<InputProps> = ({ name, touched, error, classNames, ...props }) => {
+const Input: React.FC<InputProps> = ({
+  name,
+  touched,
+  error,
+  classNames,
+  borderColor,
+  ...props
+}) => {
   const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles({ theme, borderColor });
   return (
     <input
       {...props}

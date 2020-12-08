@@ -5,15 +5,15 @@ const { successResponse, failureResponse } = require('../responses');
 
 module.exports = (req, res) => {
   try {
-    const tasks = JSON.parse(fs.readFileSync(path.join(__dirname, '../db.json')));
+    const db = JSON.parse(fs.readFileSync(path.join(__dirname, '../db.json')));
 
-    tasks[req.params.date].forEach(task => {
+    db.tasks[req.params.date].forEach(task => {
       if (task.id === req.body.id) {
-        task.complete = !tasks.complete;
+        task.complete = true;
       }
     });
 
-    fs.writeFileSync(path.join(__dirname, '../db.json'), JSON.stringify(tasks));
+    fs.writeFileSync(path.join(__dirname, '../db.json'), JSON.stringify(db));
 
     res.json(successResponse(null));
   } catch (e) {

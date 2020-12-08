@@ -4,7 +4,7 @@ import { Theme } from 'theme/types/theme.types';
 
 export const useStyles = createUseStyles(
   {
-    label: ({ theme }: { theme: Theme }) => ({
+    label: ({ theme, uppercase }: { theme: Theme; uppercase: boolean }) => ({
       display: 'flex',
       flexDirection: 'column',
       marginBottom: theme.offsets.md,
@@ -17,9 +17,11 @@ export const useStyles = createUseStyles(
         cursor: 'pointer',
       },
 
-      '& > span': {
+      '& > span:first-child': {
         marginBottom: theme.offsets.xs,
-        fontSize: theme.fontSize.xs,
+        fontSize: theme.fontSize.sm,
+        color: theme.palette.common.black,
+        textTransform: uppercase ? 'uppercase' : 'none',
       },
     }),
     errorText: ({ theme }: { theme: Theme }) => ({

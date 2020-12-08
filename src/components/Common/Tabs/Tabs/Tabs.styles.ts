@@ -20,5 +20,5 @@ export const useStyles = createUseStyles(
       boxShadow: theme.shadows.xs,
     }),
   },
-  { name: 'TabsContainer' }
+  { name: 'Tabs' }
 );
