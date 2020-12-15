@@ -3,7 +3,7 @@ const path = require('path');
 
 const { successResponse, failureResponse } = require('../responses');
 
-module.exports = res => {
+module.exports = (req, res) => {
   try {
     const palette = JSON.parse(fs.readFileSync(path.join(__dirname, '../db.json'))).palette;
 
