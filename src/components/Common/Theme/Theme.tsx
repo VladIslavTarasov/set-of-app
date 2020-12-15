@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useMemo, useState, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -45,23 +45,23 @@ const Theme: React.FC = ({ children }) => {
     }
   }, [setTheme, palette, getPaletteRequestStatus]);
 
-  const isFirstRequest =
+  const loading =
     [editPaletteRequestStatus, createPaletteRequestStatus].includes(ResponseStatuses.UNCALLED) &&
     getPaletteRequestStatus === ResponseStatuses.PENDING;
 
-  const theme = activeTheme === 'custom' && palette ? themes.custom(palette) : themes[activeTheme];
+  const theme = useMemo(() => {
+    if (!activeTheme) return themes.blue;
+
+    return activeTheme === 'custom' && palette ? themes.custom(palette) : themes[activeTheme];
+  }, [activeTheme, palette]);
 
   return (
-    <>
-      {activeTheme && (
-        <ThemeProvider theme={theme}>
-          <ThemeSwitcherContext.Provider value={[activeTheme, setTheme]}>
-            {isFirstRequest && <Loader size="lg" mode="circle" />}
-            {!isFirstRequest && children}
-          </ThemeSwitcherContext.Provider>
-        </ThemeProvider>
-      )}
-    </>
+    <ThemeProvider theme={theme}>
+      <ThemeSwitcherContext.Provider value={[activeTheme, setTheme]}>
+        {loading && <Loader size="lg" mode="circle" />}
+        <div hidden={!activeTheme || loading}>{children}</div>
+      </ThemeSwitcherContext.Provider>
+    </ThemeProvider>
   );
 };
 
