@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 
 import Button from 'components/Common/Button';
-import { Input, Checkbox, Label, Wysiwyg } from 'components/Common/Fileds';
+import { Input, Checkbox, Label, Wysiwyg } from 'components/Common/Fields';
 import { Task } from 'store/tasks/tasks.types';
 import { useTheme } from 'theme/theme';
 
