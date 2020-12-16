@@ -63,4 +63,11 @@ export interface Common {
   transition: {
     xs: string;
   };
+  breakpoints: {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+  };
 }

@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { ImFire } from 'react-icons/im';
 import { MdDoneAll } from 'react-icons/md';
 
-import TaskActions from 'components/TodoList/TasksItem/Actions';
+import TaskActions from 'components/TodoList/TasksActions';
 import { Task } from 'store/tasks/tasks.types';
 import { useTheme } from 'theme/theme';
 import 'react-quill/dist/quill.snow.css';

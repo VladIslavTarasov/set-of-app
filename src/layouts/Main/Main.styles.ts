@@ -18,7 +18,7 @@ export const useStyles = createUseStyles(
       position: 'relative',
       width: '100%',
       maxWidth: 1440,
-      minHeight: 'calc(100vh - 60px)',
+      minHeight: 'calc(100vh - 80px)',
       padding: `0 ${theme.offsets.sm}px`,
       margin: '0 auto',
     }),
