@@ -2,7 +2,7 @@ import React, { memo, useCallback } from 'react';
 
 import { SliderPicker, ColorChangeHandler } from 'react-color';
 
-import { Input, Label } from 'components/Common/Fileds';
+import { Input, Label } from 'components/Common/Fields';
 import { useTheme } from 'theme/theme';
 
 import { useStyles } from './Slider.styles';
