@@ -8,7 +8,6 @@ interface Main {
   header?: React.ReactNode;
   main: React.ReactNode;
   footer?: React.ReactNode;
-  withCalendar?: boolean;
 }
 
 const Main: React.FC<Main> = ({ header, main, footer }) => {

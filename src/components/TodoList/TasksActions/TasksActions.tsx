@@ -11,7 +11,7 @@ import * as tasksActions from 'store/tasks/tasks.actions';
 import { Task } from 'store/tasks/tasks.types';
 import { useTheme } from 'theme/theme';
 
-import { useStyles } from './Actions.styles';
+import { useStyles } from './TasksActions.styles';
 
 interface ActionsProps {
   longTask: boolean;

@@ -66,4 +66,11 @@ export interface Theme {
   transition: {
     xs: string;
   };
+  breakpoints: {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+  };
 }

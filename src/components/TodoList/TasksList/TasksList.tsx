@@ -6,13 +6,13 @@ import { useSelector } from 'react-redux';
 import Loader from 'components/Common/Loader';
 import Tabs from 'components/Common/Tabs';
 import FilterField from 'components/TodoList/FilterField';
+import TabPanel from 'components/TodoList/TabPanel';
 import { makeGetMapTasks } from 'store/tasks/tasks.selectors';
 import { TasksMap, State } from 'store/tasks/tasks.types';
 import { RootState } from 'store/types';
 import { useTheme } from 'theme/theme';
 import { debounce } from 'utils/debounce';
 
-import TabPanel from './TabPanel/TabPanel';
 import { useStyles } from './TasksList.styles';
 
 interface TasksListProps {
