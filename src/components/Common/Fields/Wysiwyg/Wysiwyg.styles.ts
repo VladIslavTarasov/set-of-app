@@ -28,6 +28,23 @@ export const useStyles = createUseStyles(
       marginTop: theme.offsets.xs,
       color: theme.palette.error.dark,
     }),
+    hidden: () => ({
+      display: 'none',
+    }),
+    readonly: () => ({
+      '& > .ql-toolbar.ql-snow': {
+        display: 'none',
+      },
+
+      '& > .ql-toolbar.ql-snow + .ql-container.ql-snow': {
+        border: 'none',
+
+        '& > .ql-editor': {
+          padding: 0,
+          minHeight: 0,
+        },
+      },
+    }),
   },
   { name: 'Wysiwyg' }
 );

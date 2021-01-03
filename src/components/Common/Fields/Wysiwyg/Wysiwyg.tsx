@@ -1,5 +1,6 @@
 import React, { memo, useMemo, useRef, useCallback } from 'react';
 
+import cn from 'classnames';
 import { renderToString } from 'react-dom/server';
 import { MdUndo, MdRedo } from 'react-icons/md';
 import ReactQuill, { Quill } from 'react-quill';
@@ -18,12 +19,21 @@ interface WysiwygProps {
   value: string;
   label?: string;
   readonly?: boolean;
-  onChange: (value: string) => void;
+  hidden?: boolean;
+  onChange?: (value: string) => void;
   touched?: boolean;
   error?: string;
 }
 
-const Wysiwyg: React.FC<WysiwygProps> = ({ value, label, touched, error, readonly, onChange }) => {
+const Wysiwyg: React.FC<WysiwygProps> = ({
+  value,
+  label,
+  touched,
+  error,
+  readonly,
+  hidden,
+  onChange,
+}) => {
   const theme = useTheme();
   const classes = useStyles({ theme, error: Boolean(touched && error) });
 
@@ -31,7 +41,7 @@ const Wysiwyg: React.FC<WysiwygProps> = ({ value, label, touched, error, readonl
 
   const handleChange = useCallback(
     (html: string) => {
-      onChange(html);
+      onChange?.(html);
     },
     [onChange]
   );
@@ -59,6 +69,8 @@ const Wysiwyg: React.FC<WysiwygProps> = ({ value, label, touched, error, readonl
         {label && <p className={classes.label}>{label}</p>}
         <ReactQuill
           ref={quill}
+          readOnly={Boolean(readonly)}
+          className={cn({ [classes.readonly]: readonly, [classes.hidden]: hidden })}
           theme="snow"
           value={value}
           onChange={handleChange}

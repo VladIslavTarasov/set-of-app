@@ -4,10 +4,10 @@ import cn from 'classnames';
 import { ImFire } from 'react-icons/im';
 import { MdDoneAll } from 'react-icons/md';
 
+import Wysiwyg from 'components/Common/Fields/Wysiwyg';
 import TaskActions from 'components/TodoList/TasksActions';
 import { Task } from 'store/tasks/tasks.types';
 import { useTheme } from 'theme/theme';
-import 'react-quill/dist/quill.snow.css';
 
 import { useStyles } from './TasksItem.styles';
 
@@ -21,17 +21,7 @@ const TasksItem: React.FC<TasksItemProps> = ({
 }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-
-  const [longTask, setLongTask] = useState<boolean>(false);
   const [showFullTask, setShowFullTask] = useState<boolean>(false);
-
-  const measuredRef = useCallback(
-    (node: HTMLElement) => {
-      setLongTask(node?.offsetHeight > 60);
-    },
-    // eslint-disable-next-line
-    [task.description]
-  );
 
   const toogle = useCallback(() => {
     setShowFullTask(prev => !prev);
@@ -47,21 +37,19 @@ const TasksItem: React.FC<TasksItemProps> = ({
     >
       <article
         className={cn(classes.content, {
-          [classes.show]: longTask && showFullTask,
-          [classes.hide]: longTask && !showFullTask,
+          [classes.show]: showFullTask,
+          [classes.hide]: !showFullTask,
         })}
-        ref={measuredRef}
       >
         <div className={classes.titleWrapper}>
           {important && <ImFire color="red" fontSize="medium" />}
           {complete && <MdDoneAll color="green" fontSize="medium" />}
           <h5 className={classes.title}>{title}</h5>
         </div>
-        <div dangerouslySetInnerHTML={{ __html: description.toString() }} />
+        <Wysiwyg readonly hidden={!showFullTask} value={description[0]} />
       </article>
 
       <TaskActions
-        longTask={longTask}
         showFullTask={showFullTask}
         complete={complete}
         onToggle={toogle}
