@@ -14,14 +14,13 @@ import { useTheme } from 'theme/theme';
 import { useStyles } from './TasksActions.styles';
 
 interface ActionsProps {
-  longTask: boolean;
   showFullTask: boolean;
   complete: boolean;
   task: Task;
   onToggle: () => void;
 }
 
-const Actions: React.FC<ActionsProps> = ({ longTask, showFullTask, complete, task, onToggle }) => {
+const Actions: React.FC<ActionsProps> = ({ showFullTask, complete, task, onToggle }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
@@ -43,17 +42,15 @@ const Actions: React.FC<ActionsProps> = ({ longTask, showFullTask, complete, tas
   return (
     <>
       <div className={classes.actions}>
-        {longTask && (
-          <Button
-            type="button"
-            onClick={onToggle}
-            mode="icon"
-            araia-label={t('showList')}
-            title={t('showList')}
-          >
-            {showFullTask ? <BiHide /> : <BiShow />}
-          </Button>
-        )}
+        <Button
+          type="button"
+          onClick={onToggle}
+          mode="icon"
+          araia-label={t('showList')}
+          title={t('showList')}
+        >
+          {showFullTask ? <BiHide /> : <BiShow />}
+        </Button>
         {!complete && (
           <>
             <Button onClick={handleEditTask} mode="icon" araia-label={t('edit')} title={t('edit')}>

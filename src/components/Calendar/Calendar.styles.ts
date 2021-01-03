@@ -6,6 +6,7 @@ export const useStyles = createUseStyles(
   {
     calendar: ({ theme, maxWidth }: { theme: Theme; maxWidth: number }) => ({
       maxWidth: maxWidth || '100%',
+      minWidth: maxWidth || '100%',
       alignSelf: 'flex-start',
       backgroundColor: theme.palette.common.white,
       borderRadius: theme.borderRadius.sm,

@@ -23,7 +23,7 @@ const TasksList: React.FC<TasksListProps> = ({ loading }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const { t } = useTranslation('tabs');
-  const [activeValue, setActiveValue] = useState<string>(t('all'));
+  const [activeValue, setActiveValue] = useState<string>(t('uncomplete'));
   const [inputValue, setValue] = useState<string>('');
 
   const getMapTasks = useMemo(makeGetMapTasks, []);
